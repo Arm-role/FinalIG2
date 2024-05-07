@@ -60,8 +60,10 @@ namespace StarterAssets
 
         [Space(10)]
         public float _LocoDis = 2;
+        public float _ZoomDis = 2;
         public float _CenterDis = 4;
         public Vector3 LocoOffset = new Vector3(4.2f, 0, 0.8f);
+        public Vector3 ZoomOffset = new Vector3(4.2f, 0, 0.8f);
         public Vector3 CenterOffset = Vector3.zero;
 
         public float TopClamp = 70.0f;
@@ -111,9 +113,10 @@ namespace StarterAssets
         // SmoothNess
         private float smoothness = 0.3f; // ความนุ่มนวล
         private float currentVelocity; // ความเร็วปัจจุบัน
-        private float currentSholderoffset;
+        private float currentSholderoffsetX;
+        private float currentSholderoffsetY;
         private float currentDistance;
-        private float _SmoothSholderOffset = 0.3f;
+        private float _SmoothSholderOffset = 0.07f;
 
         private int _HotMode;
         
@@ -204,22 +207,47 @@ namespace StarterAssets
 
         private void LocoCamera()
         {
-            thirdFollow.ShoulderOffset.x = Mathf.SmoothDamp
-                (thirdFollow.ShoulderOffset.x, LocoOffset.x, ref currentSholderoffset, _SmoothSholderOffset);
-            thirdFollow.CameraDistance = Mathf.SmoothDamp
-                (thirdFollow.CameraDistance, _LocoDis, ref currentDistance, _SmoothSholderOffset);
+            if (_input.LockLocomotion && _HotMode == 3)
+            {
+                thirdFollow.ShoulderOffset.x = CameraOffset
+                (thirdFollow.ShoulderOffset.x, ZoomOffset.x, currentSholderoffsetX);
+
+                thirdFollow.ShoulderOffset.y = CameraOffset
+                (thirdFollow.ShoulderOffset.y, ZoomOffset.y, currentSholderoffsetY);
+
+                thirdFollow.CameraDistance = CameraOffset
+                (thirdFollow.CameraDistance, _ZoomDis, currentDistance);
+            }
+            else
+            {
+                thirdFollow.ShoulderOffset.x = CameraOffset
+                (thirdFollow.ShoulderOffset.x, LocoOffset.x, currentSholderoffsetX);
+
+                thirdFollow.ShoulderOffset.y = CameraOffset
+                (thirdFollow.ShoulderOffset.y, LocoOffset.y, currentSholderoffsetY);
+
+                thirdFollow.CameraDistance = CameraOffset
+                (thirdFollow.CameraDistance, _LocoDis, currentDistance);
+
+            }
 
             CrossHair.SetActive(true);
         }
         private void CenterCamera()
         {
-            thirdFollow.ShoulderOffset.x = Mathf.SmoothDamp
-                (thirdFollow.ShoulderOffset.x, CenterOffset.x, ref currentSholderoffset, _SmoothSholderOffset);
-            thirdFollow.CameraDistance = Mathf.SmoothDamp
-                (thirdFollow.CameraDistance, _CenterDis, ref currentDistance, _SmoothSholderOffset);
+            thirdFollow.ShoulderOffset.x = CameraOffset
+            (thirdFollow.ShoulderOffset.x, CenterOffset.x, currentSholderoffsetX);
+
+            thirdFollow.CameraDistance = CameraOffset
+            (thirdFollow.CameraDistance, _CenterDis, currentDistance);
 
             CrossHair.SetActive(false);
 
+        }
+
+        private float CameraOffset(float CameraOffset ,float ToOffset, float CurrentSholderOffset)
+        {
+            return Mathf.SmoothDamp(CameraOffset, ToOffset, ref CurrentSholderOffset, _SmoothSholderOffset);
         }
         private void LateUpdate()
         {

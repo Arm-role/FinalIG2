@@ -1568,10 +1568,12 @@ MonoBehaviour:
   CinemachineCamera: {fileID: 690785519}
   _Rig: {fileID: 690785519}
   CinemachineCameraTarget: {fileID: 8338988565591873048}
-  _LocoDis: 4
-  _CenterDis: 4
-  LocoOffset: {x: 4.2, y: 0, z: 0.8}
-  CenterOffset: {x: 0, y: 0, z: 0}
+  _LocoDis: 6
+  _ZoomDis: 7
+  _CenterDis: 6
+  LocoOffset: {x: 3, y: 0.2, z: 0}
+  ZoomOffset: {x: 3, y: 0.3, z: 0}
+  CenterOffset: {x: 0, y: 0.2, z: 0}
   TopClamp: 70
   BottomClamp: -30
   CameraAngleOverride: 0
