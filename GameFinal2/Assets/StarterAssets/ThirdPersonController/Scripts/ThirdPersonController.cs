@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -57,6 +58,12 @@ namespace StarterAssets
         public CinemachineVirtualCameraBase _Rig;
         public GameObject CinemachineCameraTarget;
 
+        [Space(10)]
+        public float _LocoDis = 2;
+        public float _CenterDis = 4;
+        public Vector3 LocoOffset = new Vector3(4.2f, 0, 0.8f);
+        public Vector3 CenterOffset = Vector3.zero;
+
         public float TopClamp = 70.0f;
 
         public float BottomClamp = -30.0f;
@@ -99,6 +106,7 @@ namespace StarterAssets
         private int _animIDIsLocomotion;
         private int _animIDHorDir;
         private int _animIDVerDir;
+        private int _animIDHotMode;
 
         // SmoothNess
         private float smoothness = 0.3f; // ความนุ่มนวล
@@ -106,8 +114,9 @@ namespace StarterAssets
         private float currentSholderoffset;
         private float currentDistance;
         private float _SmoothSholderOffset = 0.3f;
-        private Vector3 LocoOffset = new Vector3(4.2f, 0, 0.8f);
-        private Vector3 CenterOffset = Vector3.zero;
+
+        private int _HotMode;
+        
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -121,6 +130,8 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        private HotbarManager _hotbarManager;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -132,8 +143,6 @@ namespace StarterAssets
 #endif
             }
         }
-
-        private SmoothRush smoothRush = new SmoothRush();
 
         #endregion
         private void Awake()
@@ -152,6 +161,11 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+            _hotbarManager = FindAnyObjectByType<HotbarManager>();
+            if(_hotbarManager != null)
+            {
+                _hotbarManager.ImportStarterAssetsInputs(GetComponent<StarterAssetsInputs>());
+            }
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -174,13 +188,14 @@ namespace StarterAssets
                 Debug.Log("CinemachineVirtualCamera not found.");
             }
             CrossHair.SetActive(false);
-
         }
 
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
             _Locomotion = _input.LockLocomotion ? 1.2f : 1.1f;
+            _HotMode = _hotbarManager.CurrentTag;
+            _animator.SetFloat(_animIDHotMode, _HotMode);
 
             JumpAndGravity();
             GroundedCheck();
@@ -192,7 +207,7 @@ namespace StarterAssets
             thirdFollow.ShoulderOffset.x = Mathf.SmoothDamp
                 (thirdFollow.ShoulderOffset.x, LocoOffset.x, ref currentSholderoffset, _SmoothSholderOffset);
             thirdFollow.CameraDistance = Mathf.SmoothDamp
-                (thirdFollow.CameraDistance, 2f, ref currentDistance, _SmoothSholderOffset);
+                (thirdFollow.CameraDistance, _LocoDis, ref currentDistance, _SmoothSholderOffset);
 
             CrossHair.SetActive(true);
         }
@@ -201,7 +216,7 @@ namespace StarterAssets
             thirdFollow.ShoulderOffset.x = Mathf.SmoothDamp
                 (thirdFollow.ShoulderOffset.x, CenterOffset.x, ref currentSholderoffset, _SmoothSholderOffset);
             thirdFollow.CameraDistance = Mathf.SmoothDamp
-                (thirdFollow.CameraDistance, 4f, ref currentDistance, _SmoothSholderOffset);
+                (thirdFollow.CameraDistance, _CenterDis, ref currentDistance, _SmoothSholderOffset);
 
             CrossHair.SetActive(false);
 
@@ -209,7 +224,6 @@ namespace StarterAssets
         private void LateUpdate()
         {
             CameraRotation();
-            AutoFOV();
         }
 
         #region Start
@@ -223,6 +237,7 @@ namespace StarterAssets
             _animIDIsLocomotion = Animator.StringToHash("IsLocomotion");
             _animIDHorDir = Animator.StringToHash("HorDir");
             _animIDVerDir = Animator.StringToHash("VerDir");
+            _animIDHotMode = Animator.StringToHash("CurrentMode");
         }
         #endregion
 
@@ -247,8 +262,24 @@ namespace StarterAssets
             CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
                 _cinemachineTargetYaw, 0.0f);
         }
-        private void AutoFOV()
+        private void AutoFOV(float speed)
         {
+            if (_input.LockLocomotion && _HotMode == 3)
+            {
+                _cinemachineFOV = Mathf.SmoothDamp(_cinemachineFOV, 15, ref currentVelocity, smoothness);
+            }else
+            {
+                switch (speed)
+                {
+                    case < 4.5f:
+                        _cinemachineFOV = Mathf.SmoothDamp(_cinemachineFOV, 40, ref currentVelocity, smoothness);
+                        break;
+                    case > 4.5f:
+                        if (_input.sprint) _cinemachineFOV = Mathf.SmoothDamp(_cinemachineFOV, 60, ref currentVelocity, smoothness);
+                        break;
+                }
+            }
+            
             CinemachineCamera.m_Lens.FieldOfView = _cinemachineFOV;
             _animator.SetFloat(_animIDIsLocomotion, _Locomotion);
         }
@@ -271,18 +302,28 @@ namespace StarterAssets
         }
         private void Moveing()
         {
-            if (_input.LockLocomotion)
+            switch (_HotMode)
             {
-                Move_Locomotion();
-                LocoCamera();
-            }
-            else 
-            { 
-                Move_forward();
-                CenterCamera();
-            }
+                case 0:
+                    Move_forward();
+                    CenterCamera();
+                    break;
 
-            if (!_input.sprint || _input.LockLocomotion) _cinemachineFOV = Mathf.SmoothDamp(_cinemachineFOV, 40, ref currentVelocity, smoothness);
+                case 1:
+                    Move_Locomotion();
+                    CenterCamera();
+                    break;
+
+                case 2:
+                    Move_Locomotion();
+                    LocoCamera();
+                    break;
+
+                case 3:
+                    Move_Locomotion();
+                    LocoCamera();
+                    break;
+            }
         }
         private void Move_forward()
         {
@@ -321,8 +362,6 @@ namespace StarterAssets
                     RotationSmoothTime);
 
                 transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-
-                if (_input.sprint) _cinemachineFOV = Mathf.SmoothDamp(_cinemachineFOV, 60,ref currentVelocity, smoothness);
             }
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
@@ -331,6 +370,7 @@ namespace StarterAssets
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
+            AutoFOV(_animationBlend);
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
@@ -339,7 +379,7 @@ namespace StarterAssets
         }
         private void Move_Locomotion()
         {
-            float targetSpeed = MoveSpeed;
+            float targetSpeed = SpeedControl();
 
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
 
@@ -364,20 +404,68 @@ namespace StarterAssets
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _mainCamera.transform.eulerAngles.y, ref _rotationVelocity,
+            ////////////////////////////////////////////
+
+            if (_input.move == new Vector2(1, 1) || _input.move == new Vector2(-1, 1))
+            {
+                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+                if (_input.move != Vector2.zero)
+                {
+                    _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
+                                      _mainCamera.transform.eulerAngles.y;
+                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                        RotationSmoothTime);
+
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
+
+                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
+                // move the player
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            }
+
+            else if (_input.move == new Vector2(1, -1) || _input.move == new Vector2(-1, -1))
+            {
+                Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+
+                if (_input.move != Vector2.zero)
+                {
+                    _targetRotation = Mathf.Atan2(-inputDirection.x, -inputDirection.z) * Mathf.Rad2Deg +
+                                      _mainCamera.transform.eulerAngles.y;
+                    float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                        RotationSmoothTime);
+
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
+
+                Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.back;
+
+                // move the player
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            }
+
+            else
+            {
+                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _mainCamera.transform.eulerAngles.y, ref _rotationVelocity,
                 RotationSmoothTime);
 
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
 
-            Vector3 movementDirection = new Vector3(_input.move.x, 0.0f, _input.move.y);
+                Vector3 movementDirection = new Vector3(_input.move.x, 0.0f, _input.move.y);
 
-            movementDirection = Quaternion.AngleAxis(_mainCamera.transform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //อ้างอิงทิศทางจากกล้อง
-            movementDirection.Normalize();
+                movementDirection = Quaternion.AngleAxis(_mainCamera.transform.rotation.eulerAngles.y, Vector3.up) * movementDirection; //อ้างอิงทิศทางจากกล้อง
+                movementDirection.Normalize();
 
-            // move the player
-            _controller.Move(movementDirection * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
+                // move the player
+                _controller.Move(movementDirection * (_speed * Time.deltaTime) +
+                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            }
+            
+            AutoFOV(_animationBlend);
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
@@ -385,6 +473,17 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDHorDir, _input.move.x);
                 _animator.SetFloat(_animIDVerDir, _input.move.y);
             }
+        }
+        private float SpeedControl()
+        {
+            if(_HotMode == 3 && !_input.LockLocomotion || _HotMode == 1)
+            {
+                if (_input.move == Vector2.up || _input.move == new Vector2(1, 1) || _input.move == new Vector2(-1, 1))
+                {
+                    return _input.sprint ? SprintSpeed : MoveSpeed;
+                }
+            }
+            return MoveSpeed;
         }
         private void JumpAndGravity()
         {

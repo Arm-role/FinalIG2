@@ -14,6 +14,7 @@ namespace StarterAssets
 		public bool sprint;
 		public bool ActiveObject;
 		public bool LockLocomotion;
+		public float ScrollHotbar;
 
         [Header("Movement Settings")]
 		public bool analogMovement;
@@ -54,10 +55,15 @@ namespace StarterAssets
 		{
             LockLocomotionInput(value.isPressed);
 		}
+
+		public void OnScrollHotbar(InputValue value)
+		{
+			ScrollHotbarInput(value.Get<float>());
+		}
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -87,7 +93,12 @@ namespace StarterAssets
             LockLocomotion = newLockLocomotion;
 		}
 
-		private void OnApplicationFocus(bool hasFocus)
+        public void ScrollHotbarInput(float newScrollHotbar)
+        {
+            ScrollHotbar = newScrollHotbar;
+        }
+
+        private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}
