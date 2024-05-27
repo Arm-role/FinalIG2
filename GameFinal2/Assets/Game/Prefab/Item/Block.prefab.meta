@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:GameFinal2/Assets/Game/Prefab/Item/Block.prefab.meta
 guid: 24620fcafb5b19246b3b8dbb91c4350d
+========
+guid: dbd4333d033c6424694be26309a34669
+>>>>>>>> b7547ecf49626be86958d2beba42bc2b8c8a3316:GameFinal2/Assets/Game/Prefab/Item/SoilBox.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
