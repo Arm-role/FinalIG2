@@ -13,18 +13,25 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool ActiveObject;
+		public bool Action;
 		public bool LockLocomotion;
 		public float ScrollHotbar;
+		public bool OpenInventory;
+        public bool ItemShortcut;
 
         [Header("Movement Settings")]
 		public bool analogMovement;
 
 		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
-		public bool cursorInputForLook = true;
+		public bool cursorLocked = false;
+		public bool cursorInputForLook = false;
 
+        private void Awake()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -36,7 +43,6 @@ namespace StarterAssets
 				LookInput(value.Get<Vector2>());
 			}
 		}
-
 		public void OnJump(InputValue value)
 		{
 			JumpInput(value.isPressed);
@@ -51,7 +57,11 @@ namespace StarterAssets
 		{
             ActiveObjectInput(value.isPressed);
 		}
-		public void OnLockMode(InputValue value)
+        public void OnAction(InputValue value)
+        {
+            ActionInput(value.isPressed);
+        }
+        public void OnLockMode(InputValue value)
 		{
             LockLocomotionInput(value.isPressed);
 		}
@@ -60,9 +70,16 @@ namespace StarterAssets
 		{
 			ScrollHotbarInput(value.Get<float>());
 		}
+
+        public void OnOpenInventory(InputValue value)
+        {
+            OpenInvenInput(value.isPressed);
+        }
+        public void OnInventoryShortcut(InputValue value)
+		{
+			InvenShortInput(value.isPressed);
+		}
 #endif
-
-
         public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
@@ -87,8 +104,11 @@ namespace StarterAssets
 		{
             ActiveObject = newActiveObject;
 		}
-
-		public void LockLocomotionInput(bool newLockLocomotion)
+        public void ActionInput(bool newAction)
+        {
+            Action = newAction;
+        }
+        public void LockLocomotionInput(bool newLockLocomotion)
 		{
             LockLocomotion = newLockLocomotion;
 		}
@@ -97,16 +117,22 @@ namespace StarterAssets
         {
             ScrollHotbar = newScrollHotbar;
         }
-
-        private void OnApplicationFocus(bool hasFocus)
+		public void OpenInvenInput(bool newOpenInvenState)
 		{
-			SetCursorState(cursorLocked);
+			OpenInventory = newOpenInvenState;
 		}
-
-		private void SetCursorState(bool newState)
+		private void OnApplicationFocus(bool hasFocus)
+        {
+            //SetCursorState(cursorLocked);
+        }
+		public void InvenShortInput(bool invenShortInput)
 		{
-			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+            ItemShortcut = invenShortInput;
 		}
+  //      private void SetCursorState(bool newState)
+		//{
+		//	//Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		//	//Debug.Log(newState);
+		//}
 	}
-	
 }
