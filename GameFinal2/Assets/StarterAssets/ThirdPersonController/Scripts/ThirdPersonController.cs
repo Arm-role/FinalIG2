@@ -133,8 +133,6 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
-        private HotbarManager _hotbarManager;
-
         private bool IsCurrentDeviceMouse
         {
             get
@@ -164,11 +162,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-            _hotbarManager = FindAnyObjectByType<HotbarManager>();
-            if(_hotbarManager != null)
-            {
-                _hotbarManager.ImportStarterAssetsInputs(GetComponent<StarterAssetsInputs>());
-            }
+
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -197,7 +191,7 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
             _Locomotion = _input.LockLocomotion ? 1.2f : 1.1f;
-            _HotMode = _hotbarManager.CurrentTag;
+            _HotMode = HotbarScroll.instance != null ? HotbarScroll.instance.CurrentTag : 0;
             _animator.SetFloat(_animIDHotMode, _HotMode);
 
             JumpAndGravity();
@@ -228,9 +222,7 @@ namespace StarterAssets
 
                 thirdFollow.CameraDistance = CameraOffset
                 (thirdFollow.CameraDistance, _LocoDis, currentDistance);
-
             }
-
             CrossHair.SetActive(true);
         }
         private void CenterCamera()
@@ -242,7 +234,6 @@ namespace StarterAssets
             (thirdFollow.CameraDistance, _CenterDis, currentDistance);
 
             CrossHair.SetActive(false);
-
         }
 
         private float CameraOffset(float CameraOffset ,float ToOffset, float CurrentSholderOffset)
@@ -253,7 +244,6 @@ namespace StarterAssets
         {
             CameraRotation();
         }
-
         #region Start
         private void AssignAnimationIDs()
         {
