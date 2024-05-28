@@ -14,7 +14,7 @@ public class ItemDrop : MonoBehaviour
         {
             case ItemType.Misc:
 
-                if (UsePlant.Instance.hit.collider.gameObject.name == "SoilBox")
+                if (!UsePlant.Instance.HaveSeed)
                 {
                     InventoryManager.Instance.Remove(Item, value);
                 }

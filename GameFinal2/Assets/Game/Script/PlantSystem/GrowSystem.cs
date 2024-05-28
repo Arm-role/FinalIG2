@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class GrowSystem : MonoBehaviour
 {
     private GameObject ObID;
 
+    public int Min;
+    public int Max;
     public float timer = 0;
     public float timeSpeed;
+    public bool HavePlant = false;
 
     private GameObject plantOB;
 
@@ -16,6 +16,7 @@ public class GrowSystem : MonoBehaviour
     private bool isGrow = true;
 
     private Item item;
+
     void Update()
     {
         if (isGrow)
@@ -73,6 +74,7 @@ public class GrowSystem : MonoBehaviour
     {
         this.item = item;
         ObID = item.ObjectOnWorld;
+        HavePlant = true;
         Debug.Log("get");
     }
     public void Havest()
@@ -81,7 +83,7 @@ public class GrowSystem : MonoBehaviour
         {
             if(item != null)
             {
-                InventoryManager.Instance.Add(item);
+                RateDropItem();
                 Destroy(plantOB);
                 isGrow = true;
                 isCreate = true;
@@ -89,6 +91,13 @@ public class GrowSystem : MonoBehaviour
                 ObID = null;
                 timer = 0;
             }
+        }
+    }
+    private void RateDropItem()
+    {
+        for (int i = 0; i < Random.Range(Min, Max); i++)
+        {
+            InventoryManager.Instance.Add(item);
         }
     }
 }

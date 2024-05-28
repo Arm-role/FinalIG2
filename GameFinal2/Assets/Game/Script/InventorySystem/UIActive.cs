@@ -3,19 +3,29 @@ using UnityEngine;
 
 public class UIActive : MonoBehaviour
 {
+    public static UIActive instance;
+
     [SerializeField] private Transform Inventory;
     [SerializeField] private Transform Hotbar;
     [SerializeField] private Transform Maketplace;
     [SerializeField] private Transform Mymoney;
 
-    private bool isOpenMaket = false;
-    private bool isOpenInven = false;
+    [HideInInspector] public bool isOpenMaket = false;
+    [HideInInspector] public bool isOpenInven = false;
 
-    private StarterAssetsInputs _input;
-
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(instance);
+        }
+    }
     void Start()
     {
-        _input = FindAnyObjectByType<StarterAssetsInputs>();
         Inventory.gameObject.SetActive(false);
         Maketplace.gameObject.SetActive(false);
         Hotbar.gameObject.SetActive(true);
@@ -24,20 +34,20 @@ public class UIActive : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && Advice.Instance.showAdvice == 1)
         {
             isOpenMaket = !isOpenMaket;
             isOpenInven = false;
             InventoryActive();
         }
-        else if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             isOpenInven = !isOpenInven;
             isOpenMaket = false;
             InventoryActive();
         }
     }
-    private void InventoryActive()
+    public void InventoryActive()
     {
         if (isOpenMaket && !isOpenInven)
         {

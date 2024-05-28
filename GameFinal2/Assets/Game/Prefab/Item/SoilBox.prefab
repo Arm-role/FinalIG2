@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1243546533071121808}
   - component: {fileID: 5988784460071384666}
   - component: {fileID: 1479432281549054783}
+  - component: {fileID: 3732144884824310981}
   m_Layer: 0
   m_Name: model
   m_TagString: Untagged
@@ -84,6 +85,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3732144884824310981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480760595787127292}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!1 &7983942894638586541
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2578558219964462064
 Transform:
   m_ObjectHideFlags: 0
@@ -151,8 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e45b720959cbaa47b8f24e3bbf3ba1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Min: 1
+  Max: 5
   timer: 0
   timeSpeed: 2
+  HavePlant: 0
 --- !u!1001 &2922098541390226535
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - block
   - SellArea
   - World
+  - AdviceArea
   layers:
   - Default
   - TransparentFX

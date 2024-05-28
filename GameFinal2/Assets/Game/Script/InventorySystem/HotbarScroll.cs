@@ -136,6 +136,7 @@ public class HotbarScroll : MonoBehaviour
                 else
                 {
                     isPress1 = true;
+                    UsePlant.Instance.isPress = true;
                 }
 
                 break;

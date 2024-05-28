@@ -6,7 +6,7 @@ public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance;
     public float scaleing;
-    public GameObject objects;
+    private GameObject objects;
     public Material canBuild;
     public Material cantBuild;
 
@@ -180,8 +180,16 @@ public class BuildingManager : MonoBehaviour
         {
             if (panddingObject?.activeSelf == true)
             {
-                HowBuilding(objects.transform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial,
-                true, panddingObject.transform);
+                if (objects.name == "SoilBox")
+                {
+                    HowBuilding(objects.transform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial,
+                    true, panddingObject.transform);
+                }
+                else
+                {
+                    HowBuilding(objects.transform.Find("model").GetComponent<Renderer>().sharedMaterial,
+                    true, panddingObject.transform);
+                }
 
                 panddingObject.GetComponent<Collider>().enabled = true;
 
@@ -235,7 +243,7 @@ public class BuildingManager : MonoBehaviour
     {
         panddingObject = Instantiate(Ob, pos, Quaternion.identity);
         panddingObject.name = Ob.name;
-        panddingObject.transform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial = canBuild;
+        objects = Ob;
         HowBuilding(canBuild, true, panddingObject.transform);
     }
 
@@ -304,16 +312,17 @@ public class BuildingManager : MonoBehaviour
     private void HowBuilding(Material material, bool canBuild, Transform ParentTransform)
     {
         canBuilding = canBuild;
-        ParentTransform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
+        //ParentTransform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
 
         Transform trf = ParentTransform.transform.GetChild(0);
-        if (trf.GetChild(0) != null)
+        if (trf.childCount <= 0)
         {
-            trf.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
+            trf.GetComponent<Renderer>().sharedMaterial = material;
         }
         else
         {
-            trf.GetComponent<Renderer>().sharedMaterial = material;
+            trf.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
+
         }
     }
 }
