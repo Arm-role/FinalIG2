@@ -76,17 +76,17 @@ public class InventoryManager : MonoBehaviour
             {
                 if (items[i].Item1.id == item.id)
                 {
-                    if ((items[i].Item2 - value) > 1)
+                    if ((items[i].Item2 - value) >= 1)
                     {
                         items[i] = (items[i].Item1, items[i].Item2 - value, items[i].Item3, items[i].Item4);
                         ShowItem.Instace.ShowOb(item, false);
-                        Debug.Log("press");
+                        //Debug.Log("press");
                     }
                     else
                     {
                         items.Remove(items[i]);
                         ShowItem.Instace.ShowOb(item, false);
-                        Debug.Log("Remove");
+                        //Debug.Log("Remove");
                     }
                 }
             }
