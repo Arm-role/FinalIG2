@@ -26,6 +26,7 @@ public class BuildingManager : MonoBehaviour
 
     bool _isHolding = true;
     bool gridOn = true;
+    bool OnBox = false;
     public bool canBuilding = true;
 
     private void Awake()
@@ -75,7 +76,7 @@ public class BuildingManager : MonoBehaviour
 
                 if (distance.x == -0.5f)
                 {
-                    Debug.Log("Left");
+                    //Debug.Log("Left");
                     roundedPos = new Vector3(
                     RoundToNearestGrid(pos.x) - distance.x,
                     RoundToNearestGrid(pos.y),
@@ -85,7 +86,7 @@ public class BuildingManager : MonoBehaviour
 
                 else if (distance.x == 0.5f)
                 {
-                    Debug.Log("Right");
+                    //Debug.Log("Right");
                     roundedPos = new Vector3(
                     RoundToNearestGrid(pos.x) - distance.x,
                     RoundToNearestGrid(pos.y),
@@ -95,7 +96,7 @@ public class BuildingManager : MonoBehaviour
 
                 else if (distance.z == -0.5f)
                 {
-                    Debug.Log("Back");
+                    //Debug.Log("Back");
                     roundedPos = new Vector3(
                     RoundToNearestGrid(pos.x) - 0.5f,
                     RoundToNearestGrid(pos.y),
@@ -105,7 +106,7 @@ public class BuildingManager : MonoBehaviour
 
                 else if (distance.z == 0.5f)
                 {
-                    Debug.Log("front");
+                    //Debug.Log("front");
                     roundedPos = new Vector3(
                     RoundToNearestGrid(pos.x) - 0.5f,
                     RoundToNearestGrid(pos.y),
@@ -115,25 +116,24 @@ public class BuildingManager : MonoBehaviour
 
                 else if (distance.y == -0.5f)
                 {
-                    Debug.Log("Up");
+                    //Debug.Log("Up");
                     roundedPos = new Vector3(
                     RoundToNearestGrid(pos.x) - 0.5f,
                     RoundToNearestGrid(pos.y) - distance.y * 2,
                     RoundToNearestGrid(pos.z) - 0.5f
                     );
+                    OnBox = true;
                 }
 
                 else if (distance.y == 0.5f)
                 {
-                    Debug.Log("Down");
+                    //Debug.Log("Down");
                     roundedPos = new Vector3(
                     RoundToNearestGrid(pos.x) - 0.5f,
                     RoundToNearestGrid(pos.y) - distance.y * 2,
                     RoundToNearestGrid(pos.z) - 0.5f
                     );
-                }else
-                {
-                    Debug.Log(distance);
+                    OnBox = true;
                 }
             }
             else
@@ -161,7 +161,6 @@ public class BuildingManager : MonoBehaviour
         if (panddingObject.name == "SoilBox")
         {
             panddingObject.transform.Find("model").transform.position = new Vector3(roundedPos.x, pos.y, roundedPos.z);
-            Debug.Log("SnapToWorld");
         }
         BlockUnbuilding(panddingObject.transform);
     }
@@ -181,15 +180,18 @@ public class BuildingManager : MonoBehaviour
         {
             if (panddingObject?.activeSelf == true)
             {
-                panddingObject.transform.Find("model").GetComponent<Renderer>().sharedMaterial = 
-                objects.transform.Find("model").GetComponent<Renderer>().sharedMaterial;
+                HowBuilding(objects.transform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial,
+                true, panddingObject.transform);
 
                 panddingObject.GetComponent<Collider>().enabled = true;
-                if (panddingObject.transform.Find("model").GetComponent<Collider>() != null)
+
+                foreach (Transform ob in panddingObject.transform)
                 {
-                    Collider coll = panddingObject.transform.Find("model").GetComponent<Collider>();
-                    coll.enabled = true;
-                    panddingObject.transform.Find("model").tag = "block";
+                    if (ob.GetComponent<Collider>() != null)
+                    {
+                        ob.GetComponent<Collider>().enabled = true;
+                        ob.GetComponent<Collider>().tag = "block";
+                    }
                 }
                 panddingObject.GetComponent<Collider>().enabled = true;
                 panddingObject.tag = "block";
@@ -233,7 +235,8 @@ public class BuildingManager : MonoBehaviour
     {
         panddingObject = Instantiate(Ob, pos, Quaternion.identity);
         panddingObject.name = Ob.name;
-        panddingObject.transform.Find("model").GetComponent<Renderer>().sharedMaterial = canBuild;
+        panddingObject.transform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial = canBuild;
+        HowBuilding(canBuild, true, panddingObject.transform);
     }
 
     public void CancelObject()
@@ -262,21 +265,55 @@ public class BuildingManager : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(BulidObject.position, BulidObject.localScale / scaleing, BulidObject.rotation, layerMask);
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("block"))
+            if (BulidObject.gameObject.name == "SoilBox")
             {
-                canBuilding = false;
-                panddingObject.transform.Find("model").GetComponent<Renderer>().sharedMaterial = cantBuild;
+                if (collider.CompareTag("World"))
+                {
+                    HowBuilding(canBuild, true, panddingObject.transform);
+                }else
+                {
+                    HowBuilding(cantBuild, false, panddingObject.transform);
+                }
             }
             else
             {
-                canBuilding = true;
-                panddingObject.transform.Find("model").GetComponent<Renderer>().sharedMaterial = canBuild;
+                if (collider.CompareTag("block"))
+                {
+                    HowBuilding(cantBuild, false, panddingObject.transform);
+                }
+                else
+                {
+                    HowBuilding(canBuild, true, panddingObject.transform);
+                }
             }
         }
+        if (BulidObject.gameObject.name == "SoilBox")
+        {
+            OnBox = false;
+        }
+        if (OnBox)
+        {
+            HowBuilding(canBuild, true, panddingObject.transform);
+        }
+        else if(colliders.Length < 1)
+        {
+            HowBuilding(cantBuild, false, panddingObject.transform);
+        }
     }
-    void OnDrawGizmosSelected()
+
+    private void HowBuilding(Material material, bool canBuild, Transform ParentTransform)
     {
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawWireCube(cube.transform.position, cube.transform.localScale / scaleing);
+        canBuilding = canBuild;
+        ParentTransform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
+
+        Transform trf = ParentTransform.transform.GetChild(0);
+        if (trf.GetChild(0) != null)
+        {
+            trf.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
+        }
+        else
+        {
+            trf.GetComponent<Renderer>().sharedMaterial = material;
+        }
     }
 }

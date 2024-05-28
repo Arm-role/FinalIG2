@@ -19,7 +19,8 @@ public class HotbarScroll : MonoBehaviour
     private float _BuildingValue;
     public int _IntValue = 0;
     private bool _CheckSelect = true;
-    private bool isPress = true;
+    private bool isPress1 = true;
+    private bool isPress2 = true;
 
     private void Awake()
     {
@@ -95,6 +96,19 @@ public class HotbarScroll : MonoBehaviour
                 {
                     CurrentTag = 0;
                     BuildingManager.Instance.CancelObject();
+
+                    if (_input.Action)
+                    {
+                        if (isPress2)
+                        {
+                            isPress2 = false;
+                            UsePlant.Instance.isPress = true;
+                        }
+                    }
+                    else
+                    {
+                        isPress2 = true;
+                    }
                 }
             }
             else
@@ -105,12 +119,25 @@ public class HotbarScroll : MonoBehaviour
     }
     private void LinkInventory(ItemDrop drop)
     {
-
-
         switch (drop.Item.itemType)
         {
             case ItemType.Misc:
-                CurrentTag = 0;
+                CurrentTag = 2;
+                BuildingManager.Instance.CancelObject();
+                if (_input.Action)
+                {
+                    if (isPress1)
+                    {
+                        isPress1 = false;
+                        drop.UseItem(1);
+                        UsePlant.Instance._placeSeed(drop.Item);
+                    }
+                }
+                else
+                {
+                    isPress1 = true;
+                }
+
                 break;
 
             case ItemType.Weapon:
@@ -123,16 +150,16 @@ public class HotbarScroll : MonoBehaviour
 
                 if (_input.Action)
                 {
-                    if (isPress)
+                    if (isPress1)
                     {
-                        isPress = false;
+                        isPress1 = false;
                         drop.UseItem(1);
                         BuildingManager.Instance.PlaceObject();
                     }
                 }
                 else
                 {
-                    isPress = true;
+                    isPress1 = true;
                 }
                 break;
 

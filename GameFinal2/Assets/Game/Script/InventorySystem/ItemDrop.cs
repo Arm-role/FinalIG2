@@ -1,5 +1,6 @@
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class ItemDrop : MonoBehaviour
 {
@@ -9,12 +10,28 @@ public class ItemDrop : MonoBehaviour
     public int Value;
     public void UseItem(int value)
     {
-        if(Item.itemType == ItemType.Building)
+        switch (Item.itemType)
         {
-            if (BuildingManager.Instance.canBuilding)
-            {
-                InventoryManager.Instance.Remove(Item, value);
-            }
+            case ItemType.Misc:
+
+                if (UsePlant.Instance.hit.collider.gameObject.name == "SoilBox")
+                {
+                    InventoryManager.Instance.Remove(Item, value);
+                }
+                break;
+
+            case ItemType.Weapon:
+                break;
+
+            case ItemType.Building:
+                if (BuildingManager.Instance.canBuilding)
+                {
+                    InventoryManager.Instance.Remove(Item, value);
+                }
+                break;
+
+            case ItemType.Gun:
+                break;
         }
     }
 }
