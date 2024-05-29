@@ -225,16 +225,17 @@ public class HotbarScroll : MonoBehaviour
             case ItemType.Gun:
                 CurrentTag = 3;
 
-                if (_input.Action)
+                if (_input.ActionL)
                 {
-                    if (isPress1)
+                    if (isPress2)
                     {
+                        ThirdPersonController.instance.PlayGun();
                         isPress1 = false;
                     }
                 }
                 else
                 {
-                    isPress1 = true;
+                    isPress2 = true;
                 }
                 break;
         }
