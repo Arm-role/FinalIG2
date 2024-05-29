@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: Sword
   value: 1
   price: 200
-  sprite: {fileID: 21300000, guid: b92c2fb02940fc3409335c5f80924104, type: 3}
+  sprite: {fileID: 21300000, guid: 5f834ddf80ff36f49b8e8a5c63a1532c, type: 3}
   IsStackable: 0
   ObjectOnWorld: {fileID: 1511584077775772679, guid: 789e0514071a94a438e42cc2dc0cb773, type: 3}
   Desciption: for attack
