@@ -5,6 +5,7 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using static UnityEditor.Experimental.GraphView.GraphView;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -18,6 +19,7 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        public static ThirdPersonController instance;
         #region public field
 
         [Header("Player")]
@@ -109,6 +111,7 @@ namespace StarterAssets
         private int _animIDHorDir;
         private int _animIDVerDir;
         private int _animIDHotMode;
+        private int _animIDPlayGun;
 
         // SmoothNess
         private float smoothness = 0.3f; // ความนุ่มนวล
@@ -133,8 +136,6 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
-        private HotbarManager _hotbarManager;
-
         private bool IsCurrentDeviceMouse
         {
             get
@@ -150,6 +151,14 @@ namespace StarterAssets
         #endregion
         private void Awake()
         {
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -164,11 +173,7 @@ namespace StarterAssets
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
-            _hotbarManager = FindAnyObjectByType<HotbarManager>();
-            if(_hotbarManager != null)
-            {
-                _hotbarManager.ImportStarterAssetsInputs(GetComponent<StarterAssetsInputs>());
-            }
+
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -197,8 +202,17 @@ namespace StarterAssets
         {
             _hasAnimator = TryGetComponent(out _animator);
             _Locomotion = _input.LockLocomotion ? 1.2f : 1.1f;
-            _HotMode = _hotbarManager.CurrentTag;
+            _HotMode = HotbarScroll.instance != null ? HotbarScroll.instance.CurrentTag : 0;
             _animator.SetFloat(_animIDHotMode, _HotMode);
+
+            if (_HotMode == 3)
+            {
+                SetWeightLayer(1, 1);
+            }
+            else
+            {
+                SetWeightLayer(1, 0);
+            }
 
             JumpAndGravity();
             GroundedCheck();
@@ -228,9 +242,7 @@ namespace StarterAssets
 
                 thirdFollow.CameraDistance = CameraOffset
                 (thirdFollow.CameraDistance, _LocoDis, currentDistance);
-
             }
-
             CrossHair.SetActive(true);
         }
         private void CenterCamera()
@@ -242,7 +254,6 @@ namespace StarterAssets
             (thirdFollow.CameraDistance, _CenterDis, currentDistance);
 
             CrossHair.SetActive(false);
-
         }
 
         private float CameraOffset(float CameraOffset ,float ToOffset, float CurrentSholderOffset)
@@ -253,7 +264,6 @@ namespace StarterAssets
         {
             CameraRotation();
         }
-
         #region Start
         private void AssignAnimationIDs()
         {
@@ -266,6 +276,7 @@ namespace StarterAssets
             _animIDHorDir = Animator.StringToHash("HorDir");
             _animIDVerDir = Animator.StringToHash("VerDir");
             _animIDHotMode = Animator.StringToHash("CurrentMode");
+            _animIDPlayGun = Animator.StringToHash("PlayGun");
         }
         #endregion
 
@@ -494,6 +505,8 @@ namespace StarterAssets
             }
             
             AutoFOV(_animationBlend);
+
+            
             if (_hasAnimator)
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
@@ -502,7 +515,7 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDVerDir, _input.move.y);
             }
         }
-        private float SpeedControl()
+        private float SpeedControl()    
         {
             if(_HotMode == 3 && !_input.LockLocomotion || _HotMode == 1)
             {
@@ -621,6 +634,19 @@ namespace StarterAssets
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+        public void PlayGun()
+        {
+            _animator.SetTrigger(_animIDPlayGun);
+        }
+
+        private void SetWeightLayer(int layer, float weight)
+        {
+            if (_animator != null && layer >= 0 && layer < _animator.layerCount)
+            {
+                _animator.SetLayerWeight(layer, weight);
             }
         }
     }

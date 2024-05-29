@@ -45,6 +45,24 @@
                     "name": "Active",
                     "type": "PassThrough",
                     "id": "7da7ae09-a9bb-46a5-b0f1-b13ccd09eb9c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Action",
+                    "type": "PassThrough",
+                    "id": "958654cd-4ae7-4cf5-9edd-65c9f734be12",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionL",
+                    "type": "PassThrough",
+                    "id": "68be95d8-d493-4815-b582-32e56a5c587a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -54,7 +72,7 @@
                     "name": "LockMode",
                     "type": "PassThrough",
                     "id": "f5798f5f-fba0-46f6-99b2-e7df3b255962",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -67,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "PassThrough",
+                    "id": "955111f6-0d36-4a1f-ad5d-554db7069474",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryShortcut",
+                    "type": "PassThrough",
+                    "id": "1efc26fa-8f62-4348-a709-523e0d824f04",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -280,7 +316,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "aea0438b-a743-4b2b-b2a5-cb87b700df0c",
                     "path": "<Mouse>/scroll/down",
                     "interactions": "",
@@ -291,7 +327,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "975f7148-7b41-46c4-9a19-0d332ae1c87a",
                     "path": "<Mouse>/scroll/up",
                     "interactions": "",
@@ -300,6 +336,83 @@
                     "action": "ScrollHotbar",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0bf18dfe-16cf-4bcd-b690-3a45b970802f",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e6c8f97-959e-4bff-8b95-19a748b73262",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "a0af5ecc-f420-4d21-8624-241805a7d6f8",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryShortcut",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "59755532-a1da-4567-8fb9-2d6cc6667223",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "InventoryShortcut",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "149612ea-3bf5-40e8-ab1b-2e537bdf9695",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "InventoryShortcut",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "68c5ca80-d05d-4aa3-8382-162d2425deb6",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58587b1d-1eaa-4669-93d2-9005453141a8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ActionL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

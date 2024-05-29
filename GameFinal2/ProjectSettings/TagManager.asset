@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+  - block
+  - SellArea
+  - World
+  - AdviceArea
   layers:
   - Default
   - TransparentFX
@@ -13,9 +17,9 @@ TagManager:
   - Water
   - UI
   - LightforCharactor
-  - 
-  - 
-  - 
+  - Tree
+  - Block
+  - Soil
   - 
   - 
   - 
