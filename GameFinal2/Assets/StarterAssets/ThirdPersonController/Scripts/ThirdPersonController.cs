@@ -209,9 +209,14 @@ namespace StarterAssets
             {
                 SetWeightLayer(1, 1);
             }
+            else if (_HotMode == 1)
+            {
+                SetWeightLayer(2, 0);
+            }
             else
             {
                 SetWeightLayer(1, 0);
+                SetWeightLayer(2, 0);
             }
 
             JumpAndGravity();
