@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: Moss rock
   value: 1
   price: 50
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 821424e898a244143b8f0a00abc24b66, type: 3}
   IsStackable: 0
   ObjectOnWorld: {fileID: 7983942894638586541, guid: 1d8d41cc009a5984380ca6f1db9c2359, type: 3}
   Desciption: "\u0E34\u0E35for building"
