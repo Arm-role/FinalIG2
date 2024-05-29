@@ -654,5 +654,11 @@ namespace StarterAssets
                 _animator.SetLayerWeight(layer, weight);
             }
         }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red; // สีแดงสำหรับการแสดงผล
+            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+            Gizmos.DrawWireSphere(spherePosition, GroundedRadius);
+        }
     }
 }
