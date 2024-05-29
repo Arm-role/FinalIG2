@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -9,7 +10,7 @@ public class BuildingManager : MonoBehaviour
     private GameObject objects;
     public Material canBuild;
     public Material cantBuild;
-
+    public float rayLength = 10f;
     private GameObject panddingObject;
 
     private Vector3 pos;
@@ -28,6 +29,7 @@ public class BuildingManager : MonoBehaviour
     bool gridOn = true;
     bool OnBox = false;
     public bool canBuilding = true;
+    public Item Item;
 
     private void Awake()
     {
@@ -167,11 +169,21 @@ public class BuildingManager : MonoBehaviour
 
     private void UpdateRaycastHit()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 50, layerMask))
+        Vector3 origin = UsePlant.Instance.transform.position;
+        Vector3 direction = UsePlant.Instance.transform.forward;
+
+        if (Physics.Raycast(origin, direction, out hit, rayLength, layerMask))
         {
             pos = hit.point;
         }
+
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //if (Physics.Raycast(ray, out hit, 50, layerMask))
+        //{
+        //    pos = hit.point;
+        //}
+        
+
     }
 
     public void PlaceObject()
@@ -217,6 +229,7 @@ public class BuildingManager : MonoBehaviour
 
     public void SelecObject(Item item)
     {
+        Item = item;
         if (panddingObject?.activeSelf == false)
         {
             panddingObject?.SetActive(true);
@@ -312,7 +325,6 @@ public class BuildingManager : MonoBehaviour
     private void HowBuilding(Material material, bool canBuild, Transform ParentTransform)
     {
         canBuilding = canBuild;
-        //ParentTransform.Find("model").transform.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
 
         Transform trf = ParentTransform.transform.GetChild(0);
         if (trf.childCount <= 0)
@@ -323,6 +335,42 @@ public class BuildingManager : MonoBehaviour
         {
             trf.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
 
+        }
+    }
+
+    public void DestroyTagetOB()
+    {
+        bool isDestroyOB = true;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 50, layerMask))
+        {
+            if (hit.collider.CompareTag("block"))
+            {
+                if (hit.collider.transform.parent == null)
+                {
+                    Debug.Log(hit.collider.gameObject.name + " : " + isDestroyOB);
+                    if (isDestroyOB)
+                    {
+                        ItemContain item = hit.collider.transform.GetComponent<ItemContain>();
+                        InventoryManager.Instance.Add(item.item);
+                        Destroy(hit.collider.gameObject);
+                        isDestroyOB = false;
+                        return;
+                    }
+                }else
+                {
+                    Debug.Log(hit.collider.gameObject.name + " : " + isDestroyOB);
+                    if (isDestroyOB)
+                    {
+                        ItemContain item = hit.collider.transform.parent.gameObject.GetComponent<ItemContain>();
+                        InventoryManager.Instance.Add(item.item);
+                        Destroy(hit.collider.transform.parent.gameObject);
+                        isDestroyOB = false;
+                        return;
+                    }
+                }
+                
+            }
         }
     }
 }

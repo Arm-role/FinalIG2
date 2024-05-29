@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2578558219964462064}
   - component: {fileID: -1874382154039654977}
+  - component: {fileID: 8506280231193000999}
   m_Layer: 0
   m_Name: fance
   m_TagString: Untagged
@@ -159,3 +160,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8506280231193000999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983942894638586541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaab0a63607bf64daf38d1e6751bbcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 2343eb1c423c0dd42bb2555e11e08ab4, type: 2}

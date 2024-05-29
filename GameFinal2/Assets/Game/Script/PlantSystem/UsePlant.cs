@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class UsePlant : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class UsePlant : MonoBehaviour
     public bool isPress = false;
     public bool isPress2 = false;
 
-    public RaycastHit hit;
+    public RaycastHit[] Allhit;
 
     public bool HaveSeed = false;
+    public bool foundSoil = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -26,50 +29,58 @@ public class UsePlant : MonoBehaviour
     }
     private void Update()
     {
-        if(item != null)
-        {
-            if (item.itemName == "SoilPlant")
-            {
-                RayCastSystem();
-            }
-        }
+        RayCastSystem();
     }
     public void _placeSeed(Item item)
     {
-        this.item = item;
-        isPress2 = true;
+        if (foundSoil)
+        {
+            this.item = item;
+            isPress2 = true;
+        }
     }
     private void RayCastSystem()
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
 
-        Debug.DrawRay(origin, direction * rayLength, Color.red);
-
-        RaycastHit[] hits = Physics.RaycastAll(origin, direction, rayLength);
-
+        RaycastHit[] hits = Physics.RaycastAll(origin, direction, rayLength, layerMask);
+        List<RaycastHit> col = new List<RaycastHit>();
+        Allhit = hits;
         foreach (RaycastHit hit in hits)
         {
-            Debug.Log(hit.collider.gameObject.name);
-            if (hit.collider.gameObject.name == "model")
+            if (hit.collider.gameObject.name == "model" || hit.collider.gameObject.name == "Plant")
             {
-                this.hit = hit;
+                col.Add(hit);
                 GrowSystem grow = hit.collider.transform.parent.GetComponent<GrowSystem>();
                 HaveSeed = grow.HavePlant;
+                foundSoil = true;
 
                 if (isPress2)
                 {
                     grow.GetSeed(item);
                     isPress2 = false;
                 }
-                else
+            }
+        }
+        if (col.Count == 0)
+        {
+            //ถ้าไม่เจอsoil
+            foundSoil = false;
+            isPress2 = false;
+        }
+    }
+    public void HavestPlant()
+    {
+        if (foundSoil)
+        {
+            foreach (RaycastHit hit in Allhit)
+            {
+                if (hit.collider.gameObject.name == "model" || hit.collider.gameObject.name == "Plant")
                 {
-                    if (isPress)
-                    {
-                        grow.Havest();
-                        isPress = false;
-                        Debug.Log("havest");
-                    }
+                    GrowSystem grow = hit.collider.transform.parent.GetComponent<GrowSystem>();
+                    grow.Havest();
+                    break;
                 }
             }
         }

@@ -13,8 +13,8 @@ public class ItemDrop : MonoBehaviour
         switch (Item.itemType)
         {
             case ItemType.Misc:
-
-                if (!UsePlant.Instance.HaveSeed)
+                Debug.Log(UsePlant.Instance.HaveSeed + " : " + UsePlant.Instance.foundSoil);
+                if (!UsePlant.Instance.HaveSeed && UsePlant.Instance.foundSoil)
                 {
                     InventoryManager.Instance.Remove(Item, value);
                 }

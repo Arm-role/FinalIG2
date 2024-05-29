@@ -99,10 +99,10 @@ public class Advice : MonoBehaviour
             break;
         }
     }
-    private void OnDrawGizmos()
-    {
-        Vector3 origin = transform.position + Positon;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(origin, boxSize);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 origin = transform.position + Positon;
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireCube(origin, boxSize);
+    //}
 }

@@ -13,7 +13,7 @@ public class GrowSystem : MonoBehaviour
     private GameObject plantOB;
 
     private bool isCreate = true;
-    private bool isGrow = true;
+    public bool isGrow = true;
 
     private Item item;
 
@@ -69,13 +69,13 @@ public class GrowSystem : MonoBehaviour
     {
         plantOB = Instantiate(Ob, transform);
         plantOB.transform.position = transform.GetChild(0).position;
+        plantOB.name = "Plant";
     }
     public void GetSeed(Item item)
     {
         this.item = item;
         ObID = item.ObjectOnWorld;
         HavePlant = true;
-        Debug.Log("get");
     }
     public void Havest()
     {

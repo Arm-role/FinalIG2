@@ -14,7 +14,8 @@ namespace StarterAssets
 		public bool sprint;
 		public bool ActiveObject;
 		public bool Action;
-		public bool LockLocomotion;
+        public bool ActionL;
+        public bool LockLocomotion;
 		public float ScrollHotbar;
 		public bool OpenInventory;
         public bool ItemShortcut;
@@ -60,6 +61,10 @@ namespace StarterAssets
         public void OnAction(InputValue value)
         {
             ActionInput(value.isPressed);
+        }
+        public void OnActionL(InputValue value)
+        {
+            ActionInputL(value.isPressed);
         }
         public void OnLockMode(InputValue value)
 		{
@@ -107,6 +112,10 @@ namespace StarterAssets
         public void ActionInput(bool newAction)
         {
             Action = newAction;
+        }
+        public void ActionInputL(bool newAction)
+        {
+            ActionL = newAction;
         }
         public void LockLocomotionInput(bool newLockLocomotion)
 		{

@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class HotbarScroll : MonoBehaviour
 {
     public static HotbarScroll instance;
     public int min;
     public Color CurrentColor;
+
+    public Color BuildON;
+    public Color BuildOFF;
+
     private Color IntititColor;
     public int CurrentTag = 0;
     private List<Transform> Slots = new List<Transform>();
@@ -21,6 +24,7 @@ public class HotbarScroll : MonoBehaviour
     private bool _CheckSelect = true;
     private bool isPress1 = true;
     private bool isPress2 = true;
+    private bool isPress3 = false; 
 
     private void Awake()
     {
@@ -48,6 +52,35 @@ public class HotbarScroll : MonoBehaviour
     {
         scrolling();
         ShowHoldCurrenSlot();
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            isPress3 = !isPress3;
+        }
+
+        if (isPress3)
+        {
+            CurrentTag = 2;
+
+            if (_input.ActionL)
+            {
+                if (isPress2)
+                {
+                    isPress2 = false;
+                    BuildingManager.Instance.DestroyTagetOB();
+                }
+            }
+            else
+            {
+                isPress2 = true;
+            }
+            ShowBuildMode.instance.Image.color = BuildON;
+            ShowBuildMode.instance.Text.text = "B : ON";
+        }else
+        {
+            ShowBuildMode.instance.Image.color = BuildOFF;
+            ShowBuildMode.instance.Text.text = "B : OFF";
+        }
     }
     private void scrolling()
     {
@@ -102,7 +135,7 @@ public class HotbarScroll : MonoBehaviour
                         if (isPress2)
                         {
                             isPress2 = false;
-                            UsePlant.Instance.isPress = true;
+                            UsePlant.Instance.HavestPlant();
                         }
                     }
                     else
@@ -131,22 +164,35 @@ public class HotbarScroll : MonoBehaviour
                         isPress1 = false;
                         drop.UseItem(1);
                         UsePlant.Instance._placeSeed(drop.Item);
+                        UsePlant.Instance.HavestPlant();
                     }
                 }
                 else
                 {
                     isPress1 = true;
-                    UsePlant.Instance.isPress = true;
                 }
 
                 break;
 
             case ItemType.Weapon:
                 CurrentTag = 1;
+
+                if (_input.Action)
+                {
+                    if (isPress1)
+                    {
+                        isPress1 = false;
+                    }
+                }
+                else
+                {
+                    isPress1 = true;
+                }
                 break;
 
             case ItemType.Building:
                 CurrentTag = 2;
+
                 BuildingManager.Instance.SelecObject(drop.Item);
 
                 if (_input.Action)
@@ -162,10 +208,34 @@ public class HotbarScroll : MonoBehaviour
                 {
                     isPress1 = true;
                 }
+                if (_input.ActionL)
+                {
+                    if (isPress2)
+                    {
+                        isPress2 = false;
+                        BuildingManager.Instance.DestroyTagetOB();
+                    }
+                }
+                else
+                {
+                    isPress2 = true;
+                }
                 break;
 
             case ItemType.Gun:
                 CurrentTag = 3;
+
+                if (_input.Action)
+                {
+                    if (isPress1)
+                    {
+                        isPress1 = false;
+                    }
+                }
+                else
+                {
+                    isPress1 = true;
+                }
                 break;
         }
     }

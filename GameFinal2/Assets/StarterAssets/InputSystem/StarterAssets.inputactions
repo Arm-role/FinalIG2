@@ -60,10 +60,19 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ActionL",
+                    "type": "PassThrough",
+                    "id": "68be95d8-d493-4815-b582-32e56a5c587a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "LockMode",
                     "type": "PassThrough",
                     "id": "f5798f5f-fba0-46f6-99b2-e7df3b255962",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -391,6 +400,17 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58587b1d-1eaa-4669-93d2-9005453141a8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ActionL",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
