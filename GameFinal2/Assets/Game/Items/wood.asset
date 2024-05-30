@@ -18,6 +18,6 @@ MonoBehaviour:
   value: 1
   price: 40
   sprite: {fileID: 21300000, guid: ee65538cd27318c4086bfc71e5670a33, type: 3}
-  IsStackable: 0
+  IsStackable: 1
   ObjectOnWorld: {fileID: 7983942894638586541, guid: 3df8b53a8de12ad4cb459119d375efbf, type: 3}
   Desciption: "\u0E34\u0E35for building"
