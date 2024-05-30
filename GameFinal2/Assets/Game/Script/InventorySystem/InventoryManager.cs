@@ -168,7 +168,7 @@ public class InventoryManager : MonoBehaviour
         {
             SlotOnHot = false;
         }
-        Debug.Log("ChackHotbar");
+        //Debug.Log("ChackHotbar");
     }
     public void SetItem(int i, Transform transform, bool OnHotbar)
     {

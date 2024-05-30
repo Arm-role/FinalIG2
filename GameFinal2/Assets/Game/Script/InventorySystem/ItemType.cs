@@ -3,12 +3,14 @@ public enum ItemType
     Weapon,
     Building,
     Gun,
-    Misc
+    Misc,
+    Food
 }
 public enum UIOpensystem
 {
     Inventory,
     Hotbar,
     Maketplace,
+    PauseMenu,
     nullMode
 }

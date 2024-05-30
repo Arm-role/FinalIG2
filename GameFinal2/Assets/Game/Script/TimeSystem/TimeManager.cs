@@ -23,7 +23,7 @@ public class TimeManager : MonoBehaviour
         if (TimeOfDay > 24)
         {
             TimeOfDay = 0;
-            
+            ChackFarm.instance.FindOP();
         }else
         {
             UpdateSunRotation();

@@ -81,7 +81,7 @@ public class Advice : MonoBehaviour
                         {
                             if (item.Item1.itemType == ItemType.Misc)
                             {
-                                Debug.Log(item.Item1.itemName);
+                                //Debug.Log(item.Item1.itemName);
                                 MyMoneySystem.instance.Money += (item.Item2 * item.Item1.price);
                                 MyMoneySystem.instance.ShowOnInventory();
                                 ItemToRemove.Add((item.Item1, item.Item2));

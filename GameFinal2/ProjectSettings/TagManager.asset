@@ -9,6 +9,8 @@ TagManager:
   - SellArea
   - World
   - AdviceArea
+  - Raid
+  - Plant
   layers:
   - Default
   - TransparentFX

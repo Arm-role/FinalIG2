@@ -11,6 +11,7 @@ public class GrowSystem : MonoBehaviour
     public bool HavePlant = false;
 
     private GameObject plantOB;
+    private GameObject ParentPlant;
 
     private bool isCreate = true;
     public bool isGrow = true;
@@ -67,6 +68,13 @@ public class GrowSystem : MonoBehaviour
     }
     private void CreateOB(GameObject Ob)
     {
+        if (ParentPlant == null)
+        {
+            ParentPlant = new GameObject("parentPlant");
+            ParentPlant.tag = "Plant";
+            ParentPlant.transform.SetParent(transform);
+            ParentPlant.transform.position = transform.position;
+        }
         plantOB = Instantiate(Ob, transform);
         plantOB.transform.position = transform.GetChild(0).position;
         plantOB.name = "Plant";
@@ -84,6 +92,7 @@ public class GrowSystem : MonoBehaviour
             if(item != null)
             {
                 RateDropItem();
+                Destroy(ParentPlant);
                 Destroy(plantOB);
                 isGrow = true;
                 isCreate = true;
