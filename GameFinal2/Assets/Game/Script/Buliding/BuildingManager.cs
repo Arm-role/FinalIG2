@@ -333,8 +333,13 @@ public class BuildingManager : MonoBehaviour
         }
         else
         {
-            trf.GetChild(0).GetComponent<Renderer>().sharedMaterial = material;
-
+            foreach (Transform childTransform in trf)
+            {
+                if (childTransform.GetComponent<Renderer>() != null)
+                {
+                    childTransform.GetComponent<Renderer>().sharedMaterial = material;
+                }
+            }
         }
     }
 

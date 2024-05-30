@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &15617662479076260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4440462140815050551}
+  - component: {fileID: 7365591759508170087}
+  m_Layer: 5
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4440462140815050551
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15617662479076260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4181001973303830256}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7365591759508170087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15617662479076260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af6856d1ec93ef24bb3bd0a09dc64c7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: 39517e7fd50b1de479bbf8d7d0216d0f, type: 2}
+  - {fileID: 11400000, guid: 57132eeb2a5f7664ea73f3bf3bfbf5d7, type: 2}
 --- !u!1 &370558946112256919
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +658,7 @@ RectTransform:
   - {fileID: 8191932144880921919}
   - {fileID: 480136560750318415}
   - {fileID: 7143968453555745032}
+  - {fileID: 4440462140815050551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2751,6 +2803,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 261110ad9b3ae1945a73ada38bfa2df1, type: 2}
   - {fileID: 11400000, guid: 46bce1d62c9bdea45bab5ff14975c04e, type: 2}
   - {fileID: 11400000, guid: 1fc525bbe84aca1419fbfce4e42342f3, type: 2}
+  - {fileID: 11400000, guid: f5fee4d5362f408429be2ce76ff84115, type: 2}
+  - {fileID: 11400000, guid: 39f26a97fa652714bb63fe41ac5208c5, type: 2}
+  - {fileID: 11400000, guid: e116e8e492d4e824f91f095b8f3eb118, type: 2}
+  - {fileID: 11400000, guid: 30f6b8348d8d5414294d02b29075498e, type: 2}
+  - {fileID: 11400000, guid: 2da3a6b442ca76546afa35d283f95dd2, type: 2}
+  - {fileID: 11400000, guid: f67e365a5675de44e8632243d955da34, type: 2}
+  - {fileID: 11400000, guid: ac40396b1c42c2d439083a2869c6c592, type: 2}
+  - {fileID: 11400000, guid: 9b0c35bfe83559048a31909c365f82e5, type: 2}
+  - {fileID: 11400000, guid: 63f2e820fbcc1f84ba01860ad4d7f6e3, type: 2}
   InventoryItem: {fileID: 8373573944669189215, guid: c4395b02b466e1145b75baa5abfd8124, type: 3}
   Slot: {fileID: 941845660034968219, guid: ce15917b85bc6ed47a5a86b0f5b8eb9f, type: 3}
 --- !u!1 &5795719247276490853

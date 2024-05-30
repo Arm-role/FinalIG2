@@ -67,7 +67,7 @@ public class MaketplaceManager : MonoBehaviour
     }
     public void BuyItem()
     {
-        if (MyMoneySystem.instance.Money > currentItem.price)
+        if (MyMoneySystem.instance.Money >= currentItem.price)
         {
             if ((MyMoneySystem.instance.Money - currentItem.price) >= 0)
             {

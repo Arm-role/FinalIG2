@@ -18,9 +18,18 @@ public class ChackFarm : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            FindOP();
+        }
+    }
     public void FindOP()
     {
+        SpawnRaid.instance.DestroyRaidOB();
         this.transforms.Clear();
+
         GameObject[] Plants = GameObject.FindGameObjectsWithTag("Plant");
 
         if (Plants.Length > 0)
@@ -34,14 +43,10 @@ public class ChackFarm : MonoBehaviour
         if (transforms.Count > 0)
         {
             List<List<Transform>> groups = GroupTransformsByDistance(transforms.ToArray(), threshold);
-
+            SpawnRaid.instance.GroupInput(GroupTransformsByDistance(transforms.ToArray(), threshold));
             for (int i = 0; i < groups.Count; i++)
             {
-                Debug.Log("Group " + i + ":");
-                foreach (Transform t in groups[i])
-                {
-                    Debug.Log(t.name);
-                }
+                SpawnRaid.instance.CreateRaidOB(groups[i][0].transform);
             }
             transforms.Clear();
         }

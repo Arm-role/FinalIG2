@@ -181,6 +181,7 @@ public class HotbarScroll : MonoBehaviour
                 {
                     if (isPress1)
                     {
+                        ThirdPersonController.instance.PlayGun();
                         isPress1 = false;
                     }
                 }

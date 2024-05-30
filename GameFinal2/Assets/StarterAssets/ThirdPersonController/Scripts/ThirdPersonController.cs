@@ -208,10 +208,12 @@ namespace StarterAssets
             if (_HotMode == 3)
             {
                 SetWeightLayer(1, 1);
+                SetWeightLayer(2, 0);
             }
             else if (_HotMode == 1)
             {
-                SetWeightLayer(2, 0);
+                SetWeightLayer(1, 0);
+                SetWeightLayer(2, 1);
             }
             else
             {

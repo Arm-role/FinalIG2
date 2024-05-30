@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   itemType: 0
-  itemName: Sword
+  itemName: Hoe
   value: 1
   price: 200
   sprite: {fileID: 21300000, guid: 5f834ddf80ff36f49b8e8a5c63a1532c, type: 3}
