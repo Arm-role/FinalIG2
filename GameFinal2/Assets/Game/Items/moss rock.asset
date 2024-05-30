@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: moss rock
   m_EditorClassIdentifier: 
   id: 17
-  itemType: 0
+  itemType: 1
   itemName: Moss rock
   value: 1
   price: 50

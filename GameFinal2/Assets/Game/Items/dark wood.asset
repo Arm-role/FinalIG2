@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: dark wood
   m_EditorClassIdentifier: 
   id: 15
-  itemType: 0
+  itemType: 1
   itemName: Dark wood
   value: 1
   price: 50

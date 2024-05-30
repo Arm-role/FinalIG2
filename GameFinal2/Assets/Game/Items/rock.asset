@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rock
   m_EditorClassIdentifier: 
   id: 18
-  itemType: 0
+  itemType: 1
   itemName: rock
   value: 1
   price: 40

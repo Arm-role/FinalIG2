@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: granite
   m_EditorClassIdentifier: 
   id: 16
-  itemType: 0
+  itemType: 1
   itemName: Granite
   value: 1
   price: 45
