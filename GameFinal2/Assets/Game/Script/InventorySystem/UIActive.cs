@@ -12,6 +12,7 @@ public class UIActive : MonoBehaviour
 
     [HideInInspector] public bool isOpenMaket = false;
     [HideInInspector] public bool isOpenInven = false;
+    public GameObject PausePanel;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class UIActive : MonoBehaviour
         Maketplace.gameObject.SetActive(false);
         Hotbar.gameObject.SetActive(true);
         Mymoney.gameObject.SetActive(true);
+        PausePanel.gameObject.SetActive(false);
     }
 
     void Update()
@@ -45,6 +47,12 @@ public class UIActive : MonoBehaviour
             isOpenInven = !isOpenInven;
             isOpenMaket = false;
             InventoryActive();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PausePanel.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public void InventoryActive()
