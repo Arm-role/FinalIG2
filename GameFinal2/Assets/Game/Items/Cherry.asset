@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: Cherry
   value: 1
   price: 100
-  sprite: {fileID: 21300000, guid: 3f9e56ee765f5ae49a2316c5379cc27e, type: 3}
+  sprite: {fileID: 21300000, guid: 9ff0891208cdb73429c5f105e67dafd3, type: 3}
   IsStackable: 1
   ObjectOnWorld: {fileID: 2124641990391497270, guid: 51baea9c14d705949ac59497738b38ad, type: 3}
   Desciption: vagerble for eat

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 13
   itemType: 1
-  itemName: Fance
+  itemName: Fence
   value: 1
   price: 100
-  sprite: {fileID: 21300000, guid: cb06e0966a792774796759d1ea513d0b, type: 3}
+  sprite: {fileID: 21300000, guid: f369855cf63f2b6459cd1ffd136f91c7, type: 3}
   IsStackable: 1
   ObjectOnWorld: {fileID: 7983942894638586541, guid: 06b8c38052dae844cb74df88679722a5, type: 3}
   Desciption: Block for Constuction
