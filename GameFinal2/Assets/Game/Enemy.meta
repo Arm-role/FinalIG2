@@ -1,8 +1,14 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:GameFinal2/Assets/Game/Enemy.meta
 guid: e34fa6892a65c27468197decf1796aea
 folderAsset: yes
 DefaultImporter:
+========
+guid: 49a2d57301ec1fa4cb8c14bb01573721
+NativeFormatImporter:
+>>>>>>>> 8445c5ca88fcaa7cac2c067d9c009ac799b019ee:GameFinal2/Assets/Game/Shader/New Material.mat.meta
   externalObjects: {}
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
