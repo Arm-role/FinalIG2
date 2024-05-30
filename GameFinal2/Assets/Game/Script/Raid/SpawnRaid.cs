@@ -61,9 +61,10 @@ public class SpawnRaid : MonoBehaviour
     {
         if (transform.childCount != 0)
         {
-            foreach (GameObject child in transform)
+            Debug.Log("3");
+            foreach (Transform child in transform)
             {
-                Destroy(child);
+                Destroy(child.gameObject);
             }
         }
     }
