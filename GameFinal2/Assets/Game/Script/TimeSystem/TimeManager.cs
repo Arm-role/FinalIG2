@@ -10,6 +10,7 @@ public class TimeManager : MonoBehaviour
     [SerializeField, Range(0, 60)] private float TimeOfDay;
 
     [SerializeField] private float SunRotateSpeed;
+    [SerializeField] private float RaidCoolDown;
 
     [SerializeField] private Gradient skycolor;
     [SerializeField] private Gradient equatorColor;
@@ -19,6 +20,7 @@ public class TimeManager : MonoBehaviour
 
     private float totaltime = 60;
     const float MaxTime = 60;
+
     private void Update()
     {
         TimeOfDay += Time.deltaTime * SunRotateSpeed;
@@ -45,7 +47,7 @@ public class TimeManager : MonoBehaviour
     }
     private void UpdateSunRotation()
     {
-        float sunRotation = Mathf.Lerp(-90, 270, TimeOfDay / 300);
+        float sunRotation = Mathf.Lerp(-90, 270, TimeOfDay / MaxTime);
         Sun.transform.rotation = Quaternion.Euler(sunRotation, Sun.transform.rotation.y, Sun.transform.rotation.z);
     }
 
@@ -62,9 +64,9 @@ public class TimeManager : MonoBehaviour
     IEnumerator waithForRaid()
     {
         bool isPass = true;
-        Debug.Log("ON");
-        yield return new WaitForSeconds(10);
-        Debug.Log("OFF");
+        //Debug.Log("ON");
+        yield return new WaitForSeconds(RaidCoolDown);
+        //Debug.Log("OFF");
         if (isPass)
         {
             ChackFarm.instance.FindOP();

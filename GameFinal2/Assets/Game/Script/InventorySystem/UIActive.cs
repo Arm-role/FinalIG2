@@ -51,7 +51,7 @@ public class UIActive : MonoBehaviour
             isOpenPause = false;
             InventoryActive();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             isOpenPause = !isOpenPause;
             isOpenInven = false;

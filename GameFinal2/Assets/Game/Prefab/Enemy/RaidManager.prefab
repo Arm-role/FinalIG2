@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2167617550268951455}
+  - component: {fileID: 8314480516089529790}
   - component: {fileID: 1735552927844351492}
+  - component: {fileID: 6605121642991252573}
   m_Layer: 0
   m_Name: RaidManager
   m_TagString: Untagged
@@ -32,6 +34,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8314480516089529790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457819466150764719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -1372625422
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.45000002
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 5b5175ce49c4e554d92719bb7ee25b0d, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!114 &1735552927844351492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,3 +79,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RaidOB: {fileID: 5749974887113363589, guid: 866c3113039ec83478e59a8ec5e16661, type: 3}
   TextTimer: {fileID: 0}
+  enemies:
+  - {fileID: 11400000, guid: 57132eeb2a5f7664ea73f3bf3bfbf5d7, type: 2}
+  spawner: []
+--- !u!114 &6605121642991252573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457819466150764719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3d6d6c33647b34494269ea0f93673c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: 5

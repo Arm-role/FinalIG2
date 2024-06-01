@@ -102,7 +102,6 @@ public class HotbarScroll : MonoBehaviour
                         _BuildingValue = Slots.Count;
                     }
                     _IntValue = ((int)_BuildingValue - 1);
-                    Debug.Log("changeLocation");
                 }
             }
             else

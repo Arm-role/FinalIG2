@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SpawnRaid : MonoBehaviour
 {
@@ -9,9 +10,14 @@ public class SpawnRaid : MonoBehaviour
     
     public GameObject RaidOB;
     public TextMeshProUGUI TextTimer;
+    public Enemy[] enemies;
+    public Transform[] spawner;
 
-    public List<List<Transform>> RaidGroup = new List<List<Transform>>();
+    public List<(Transform, List<Transform>)> TagetGroup = new List<(Transform, List<Transform>)>();
 
+    private List<List<Transform>> groupInput;
+    private NavMeshSurface surface;
+    bool iscreate = false;
     private void Awake()
     {
         if (instance == null)
@@ -24,20 +30,73 @@ public class SpawnRaid : MonoBehaviour
         }
     }
 
-    //public void inputGroup(List<List<Transform>> group)
-    //{
-    //    RaidGroup.Clear();
-    //    RaidGroup = group;
+    private void Start()
+    {
+        surface = GetComponent<NavMeshSurface>();
+    }
+    private void Update()
+    {
+        if (iscreate)
+        {
+            manageGroup();
+            iscreate = false;
+        }
 
-    //    for (int i = 0; i < RaidGroup.Count; i++)
-    //    {
-    //        CreateRaidOB(RaidGroup[i][0].transform, i);
-    //    }
-    //    foreach (List<Transform> groupRaid in RaidGroup)
-    //    {
+    }
+    public void manageGroup()
+    {
+        TagetGroup.Clear();
+        if (transform.childCount > 0)
+        {
+            for(int i = 0; i < groupInput.Count; i++)
+            {
+                TagetGroup.Add((transform.GetChild(i), groupInput[i]));
+            }
+            Raid();
+        }
+    }
+    public void Raid()
+    {
+        List<GameObject> EnemyList = new List<GameObject>();
 
-    //    }
-    //}
+        foreach (Transform tran in spawner)
+        {
+            int ranEn = Random.Range(0, enemies.Length);
+            int ranRate = Random.Range(1, enemies[ranEn].rateSpawn);
+            for (int i = 0; i < ranRate; i++)
+            {
+                EnemyList.Add(enemies[ranEn].Prefab);
+            }
+            if (EnemyList.Count > 0)
+            {
+                foreach (GameObject enOB in EnemyList)
+                {
+                    GameObject EnemOB = Instantiate(enOB, tran);
+                    var tagetData = EnemOB.GetComponent<TagetData>();
+                    tagetData.TagetGroup = TagetGroup;
+                    StartCoroutine(creatCooldown(1));
+                }
+            }
+        }
+    }
+    public void GroupInput(List<List<Transform>> groups)
+    {
+        if (groupInput == null)
+        {
+            Debug.Log("null");
+            groupInput = groups;
+            iscreate = true;
+
+        }
+        else
+        {
+            Debug.Log("Unnull");
+            groupInput.Clear();
+            groupInput = groups;
+            iscreate = true;
+        }
+
+    }
     public void TimeWorld(float timer)
     {
         int minutes = Mathf.FloorToInt(timer / 60);  // คำนวณนาที
@@ -45,27 +104,30 @@ public class SpawnRaid : MonoBehaviour
 
         TextTimer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
-    public void GroupInput(List<List<Transform>> groups)
-    {
-        RaidGroup.Clear();
-        RaidGroup = groups;
-    }
     public void CreateRaidOB(Transform gropTransform)
     {
         GameObject ob = Instantiate(RaidOB, transform);
         ob.transform.position = new Vector3(gropTransform.position.x, gropTransform.position.y + 2, gropTransform.position.z);
     }
-
     public void DestroyRaidOB()
     {
         if (transform.childCount != 0)
         {
-            Debug.Log("3");
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
             }
         }
+    }
+    public void ReNavMesh()
+    {
+        surface.RemoveData();
+        surface.BuildNavMesh();
+    }
+
+    IEnumerator creatCooldown(float time)
+    {
+        Debug.Log("Create");
+        yield return new WaitForSeconds(time);
     }
 }

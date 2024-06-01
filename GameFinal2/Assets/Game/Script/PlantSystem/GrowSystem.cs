@@ -31,7 +31,7 @@ public class GrowSystem : MonoBehaviour
                     case < 10:
                         if (isCreate)
                         {
-                            Debug.Log("State1");
+                            //Debug.Log("State1");
                             CreateOB(ObID.transform.GetChild(0).gameObject);
                             isCreate = false;
                         }
@@ -42,7 +42,7 @@ public class GrowSystem : MonoBehaviour
                     case < 20:
                         if (isCreate)
                         {
-                            Debug.Log("State2");
+                            //Debug.Log("State2");
                             Destroy(plantOB);
                             CreateOB(ObID.transform.GetChild(1).gameObject);
                             isCreate = false;
@@ -55,7 +55,7 @@ public class GrowSystem : MonoBehaviour
                         isCreate = true;
                         if (isCreate)
                         {
-                            Debug.Log("State3");
+                            //Debug.Log("State3");
                             Destroy(plantOB);
                             CreateOB(ObID.transform.GetChild(2).gameObject);
                             isCreate = false;

@@ -312,9 +312,20 @@ public class BuildingManager : MonoBehaviour
         {
             OnBox = false;
         }
-        if (OnBox)
+
+        if(OnBox)
         {
-            HowBuilding(canBuild, true, panddingObject.transform);
+            foreach (Collider collider in colliders)
+            {
+                if (collider.CompareTag("block"))
+                {
+                    HowBuilding(cantBuild, false, panddingObject.transform);
+                }
+                else
+                {
+                    HowBuilding(canBuild, true, panddingObject.transform);
+                }
+            }
         }
         else if(colliders.Length < 1)
         {
@@ -324,6 +335,7 @@ public class BuildingManager : MonoBehaviour
 
     private void HowBuilding(Material material, bool canBuild, Transform ParentTransform)
     {
+        //Debug.Log(canBuild);
         canBuilding = canBuild;
 
         Transform trf = ParentTransform.transform.GetChild(0);

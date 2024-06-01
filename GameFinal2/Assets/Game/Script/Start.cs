@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Start : MonoBehaviour
 {
-    // Update is called once per frame
-
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
     public void Startgame()
     {
         SceneManager.LoadScene(1);
