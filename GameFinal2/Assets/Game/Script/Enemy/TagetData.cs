@@ -39,9 +39,9 @@ public class TagetData : MonoBehaviour
                     }
                 }
                 isKeepEnemy = true;
+                AntAI.AddEnemylist(Enemylist);
+                AntAI.AddTaget(target);
             }
-            AntAI.Taget = target;
-            Debug.Log(target.name);
         }
         else
         {
@@ -67,13 +67,5 @@ public class TagetData : MonoBehaviour
         }
         return closest;
     }
-    void SortObjectsByDistance()
-    {
-        Enemylist.Sort((obj1, obj2) =>
-        {
-            float distanceToObj1 = Vector3.Distance(obj1.position, transform.position);
-            float distanceToObj2 = Vector3.Distance(obj2.position, transform.position);
-            return distanceToObj1.CompareTo(distanceToObj2);
-        });
-    }
+   
 }
