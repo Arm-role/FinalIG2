@@ -3510,11 +3510,12 @@ GameObject:
   - component: {fileID: 2566158926003740350}
   - component: {fileID: 1989431919681010038}
   - component: {fileID: 1778555074847218863}
-  - component: {fileID: 2120531197193116273}
   - component: {fileID: 7639394709510563080}
+  - component: {fileID: 2120531197193116273}
   - component: {fileID: 2874113209537669091}
   - component: {fileID: 5485971715567395548}
   - component: {fileID: 3052279607650100662}
+  - component: {fileID: 9154299785409913409}
   m_Layer: 2
   m_Name: PlayerFinal
   m_TagString: Player
@@ -3618,6 +3619,23 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &7639394709510563080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998616340034286874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 909d917d73a63f940ac158d02e936645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pushLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  canPush: 0
+  strength: 1.1
 --- !u!114 &2120531197193116273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3631,6 +3649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
+  PlayerTransform: {fileID: 0}
   SprintSpeed: 6
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
@@ -3671,23 +3690,6 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   CrossHair: {fileID: 0}
---- !u!114 &7639394709510563080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8998616340034286874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909d917d73a63f940ac158d02e936645, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  canPush: 0
-  strength: 1.1
 --- !u!114 &2874113209537669091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3759,6 +3761,20 @@ MonoBehaviour:
   isCreateOB: 0
   canBuilding: 1
   Item: {fileID: 0}
+--- !u!114 &9154299785409913409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8998616340034286874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5366f8a2b16e04bb2d3c4843ec9012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroySystem: {fileID: 0}
+  health: 100
 --- !u!1 &9100645227472268163
 GameObject:
   m_ObjectHideFlags: 0

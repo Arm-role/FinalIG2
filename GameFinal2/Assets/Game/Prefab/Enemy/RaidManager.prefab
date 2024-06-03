@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8314480516089529790}
   - component: {fileID: 1735552927844351492}
   - component: {fileID: 6605121642991252573}
+  - component: {fileID: 4726632334502222234}
   m_Layer: 0
   m_Name: RaidManager
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.45000002
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 5b5175ce49c4e554d92719bb7ee25b0d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 82ca99428efd27e4385cbfe388093e8a, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1735552927844351492
 MonoBehaviour:
@@ -81,7 +82,10 @@ MonoBehaviour:
   TextTimer: {fileID: 0}
   enemies:
   - {fileID: 11400000, guid: 57132eeb2a5f7664ea73f3bf3bfbf5d7, type: 2}
-  spawner: []
+  - {fileID: 11400000, guid: 39517e7fd50b1de479bbf8d7d0216d0f, type: 2}
+  spawner:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6605121642991252573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,3 +99,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 5
+  transforms: []
+  FindOB: 0
+--- !u!114 &4726632334502222234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457819466150764719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e492a276b66e8d141b6d95442a0488b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}

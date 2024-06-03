@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.AI.Navigation;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class SpawnRaid : MonoBehaviour
 {
@@ -78,19 +77,18 @@ public class SpawnRaid : MonoBehaviour
     }
     public void Raid()
     {
-        foreach (Transform spawn in spawner)
+        int ranSpawner = Random.Range(0, spawner.Length);
+        int ranEn = Random.Range(0, enemies.Length);
+        int ranRate = Random.Range(1, enemies[ranEn].rateSpawn);
+        Debug.Log($"{ranSpawner} : {ranEn} : {ranRate}");
+        for (int i = 0; i < ranRate; i++)
         {
-            int ranEn = Random.Range(0, enemies.Length);
-            int ranRate = Random.Range(1, enemies[ranEn].rateSpawn);
-            for (int i = 0; i < ranRate; i++)
-            {
-                GameObject EnemOB = Instantiate(enemies[ranEn].Prefab, spawn);
-                AntAI ai = EnemOB.GetComponent<AntAI>();
+            GameObject EnemOB = Instantiate(enemies[ranEn].Prefab, spawner[ranSpawner]);
+            AntAI ai = EnemOB.GetComponent<AntAI>();
 
-                ai.Damage = enemies[ranEn].EnemyDamage;
-                ai.Attackcoldown = enemies[ranEn].AttackColdown;
-                StartCoroutine(creatCooldown(1));
-            }
+            ai.Damage = enemies[ranEn].EnemyDamage;
+            ai.Attackcoldown = enemies[ranEn].AttackColdown;
+            StartCoroutine(creatCooldown(1));
         }
     }
     public void GroupInput(List<List<Transform>> groups)
