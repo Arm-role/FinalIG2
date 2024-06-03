@@ -1,12 +1,14 @@
 using System.Collections.Generic;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 public class ChackFarm : MonoBehaviour
 {
     public static ChackFarm instance;
     public float threshold = 5f;
-    private List<Transform> transforms = new List<Transform>();
+    public List<Transform> transforms = new List<Transform>();
 
+    public bool FindOB = false;
     private void Awake()
     {
         if (instance == null)
@@ -20,15 +22,33 @@ public class ChackFarm : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        //if(Input.GetKeyDown(KeyCode.L))
+        //{
+        //    FindOP();
+        //}
+
+        GameObject[] Plants = GameObject.FindGameObjectsWithTag("Plant");
+        List<Transform> Transforms = new List<Transform>();
+        if (Plants.Length > 0)
+        {
+            for (int i = 0; i < Plants.Length; i++)
+            {
+                Transforms.Add(Plants[i].transform);
+            }
+        }
+        if (Transforms.Count != transforms.Count)
         {
             FindOP();
+        }else
+        {
+            FindOB = false;
         }
     }
     public void FindOP()
     {
+        FindOB = true;
         SpawnRaid.instance.DestroyRaidOB();
-        this.transforms.Clear();
+        transforms?.Clear();
 
         GameObject[] Plants = GameObject.FindGameObjectsWithTag("Plant");
 
@@ -44,11 +64,11 @@ public class ChackFarm : MonoBehaviour
         {
             List<List<Transform>> groups = GroupTransformsByDistance(transforms.ToArray(), threshold);
             SpawnRaid.instance.GroupInput(GroupTransformsByDistance(transforms.ToArray(), threshold));
+
             for (int i = 0; i < groups.Count; i++)
             {
                 SpawnRaid.instance.CreateRaidOB(groups[i][0].transform);
             }
-            transforms.Clear();
         }
     }
     List<List<Transform>> GroupTransformsByDistance(Transform[] transforms, float threshold)

@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 2578558219964462064}
   - component: {fileID: -1874382154039654977}
   - component: {fileID: 6706765871134509912}
+  - component: {fileID: 7187690630200162839}
   m_Layer: 0
   m_Name: Glowblock
   m_TagString: Untagged
@@ -292,3 +293,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: ea24aaa48ad40da448ccef64a9c61942, type: 2}
+--- !u!114 &7187690630200162839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983942894638586541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc223fa1d6bdd664c8e3afee16fee580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100

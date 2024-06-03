@@ -11,8 +11,8 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: 
-    cost: 1
+  - name: "\u0E3ABreakable"
+    cost: 5
   - name: 
     cost: 1
   - name: 
@@ -94,7 +94,43 @@ NavMeshProjectSettings:
     agentRadius: 1.35
     agentHeight: 2.25
     agentSlope: 45
-    agentClimb: 0.12
+    agentClimb: 0.32
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  - serializedVersion: 3
+    agentTypeID: 1
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.75
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  - serializedVersion: 3
+    agentTypeID: 2
+    agentRadius: 1
+    agentHeight: 2
+    agentSlope: 36
+    agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -110,3 +146,5 @@ NavMeshProjectSettings:
   m_SettingNames:
   - Humanoid
   - Ant
+  - Humanoid for Navigation Sample
+  - Ogre for Navigation Sample

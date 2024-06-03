@@ -2149,6 +2149,7 @@ GameObject:
   - component: {fileID: 7170274801703326717}
   - component: {fileID: 6516955555771785635}
   - component: {fileID: 6508730523555966625}
+  - component: {fileID: 8447562306823255791}
   m_Layer: 0
   m_Name: antperfect
   m_TagString: Untagged
@@ -2165,7 +2166,7 @@ Transform:
   m_GameObject: {fileID: 7624014046178284455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.922096, y: 1.24, z: -21.901625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2229,9 +2230,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Taget: {fileID: 0}
+  Damage: 0
+  Attackcoldown: 0
+  SphereRadien: 0.58
+  SpherOffset: {x: 0, y: 0, z: 0.48}
   velocity: 0
   desiredVelocity: 0
-  path: 0
+  path: 1
 --- !u!114 &6508730523555966625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,6 +2251,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemylist: []
   target: {fileID: 0}
+--- !u!65 &8447562306823255791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624014046178284455}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.23, y: 3.89, z: 4.44}
+  m_Center: {x: 0, y: -0.29, z: 0}
 --- !u!1 &7937420697256263635
 GameObject:
   m_ObjectHideFlags: 0

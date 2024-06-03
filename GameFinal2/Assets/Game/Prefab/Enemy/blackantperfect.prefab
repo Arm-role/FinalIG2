@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 4225060873633860256}
   - component: {fileID: 461372587909482449}
   - component: {fileID: 3641999757970369408}
+  - component: {fileID: 3887192719834498525}
   m_Layer: 0
   m_Name: blackantperfect
   m_TagString: Untagged
@@ -315,8 +316,8 @@ Transform:
   m_GameObject: {fileID: 802747518480621193}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.622041, y: 1.15, z: -19.648624}
-  m_LocalScale: {x: 0.32825, y: 0.32825, z: 0.32825}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2713728411162082787}
@@ -379,9 +380,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Taget: {fileID: 0}
+  Damage: 0
+  Attackcoldown: 0
+  SphereRadien: 0.58
+  SpherOffset: {x: 0, y: 0, z: 0.48}
   velocity: 0
   desiredVelocity: 0
-  path: 0
+  path: 1
 --- !u!114 &3641999757970369408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +401,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemylist: []
   target: {fileID: 0}
+--- !u!65 &3887192719834498525
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802747518480621193}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.23, y: 3.89, z: 4.44}
+  m_Center: {x: 0, y: -0.29, z: 0}
 --- !u!1 &904255235031175978
 GameObject:
   m_ObjectHideFlags: 0

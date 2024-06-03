@@ -20,7 +20,9 @@ public class TimeManager : MonoBehaviour
 
     private float totaltime = 60;
     const float MaxTime = 60;
+    bool isRaid = true;
 
+    int CountSpawn = 0;
     private void Update()
     {
         TimeOfDay += Time.deltaTime * SunRotateSpeed;
@@ -32,13 +34,22 @@ public class TimeManager : MonoBehaviour
         {
             TimeOfDay = 0;
             totaltime = MaxTime;
-            StartCoroutine(waithForRaid());
+            //CountSpawn;
         }
         else
         {
             UpdateSunRotation();
             UpdateLighting();
         }
+        if(CountSpawn > 0)
+        {
+            if (isRaid)
+            {
+                SpawnRaid.instance.Raid();
+                StartCoroutine(waithForRaid());
+            }
+        }
+        
     }
     private void OnValidate()
     {
@@ -63,14 +74,9 @@ public class TimeManager : MonoBehaviour
 
     IEnumerator waithForRaid()
     {
-        bool isPass = true;
-        //Debug.Log("ON");
+        isRaid = false;
+        CountSpawn--;
         yield return new WaitForSeconds(RaidCoolDown);
-        //Debug.Log("OFF");
-        if (isPass)
-        {
-            ChackFarm.instance.FindOP();
-            isPass = false;
-        }
+        isRaid = true;
     }
 }
