@@ -124,7 +124,7 @@ public class InventoryManager : MonoBehaviour
                     if (Slots[i].name == item.Item3.name)
                     {
                         instanceSlot.Add(item.Item3.name);
-                        Debug.Log("Add : " + item.Item3.name);
+                        //Debug.Log("Add : " + item.Item3.name);
                     }
                 }
             }

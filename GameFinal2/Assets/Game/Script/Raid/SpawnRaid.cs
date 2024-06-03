@@ -36,66 +36,66 @@ public class SpawnRaid : MonoBehaviour
     }
     private void Update()
     {
-        if (iscreate)
+        if (transform.childCount > 0)
         {
-            manageGroup();
-            iscreate = false;
+            if (iscreate)
+            {
+                manageGroup();
+                
+                iscreate = false;
+            }
+            for (int i = 0; i < TagetGroup.Count; i++)
+            {
+                if (TagetGroup[i].Item1 == null)
+                {
+                    TagetGroup[i] = (transform.GetChild(i), TagetGroup[i].Item2);
+                    Debug.Log("ReTagetGroup");
+                }
+            }
         }
-
+        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Raid();
+        }
     }
     public void manageGroup()
     {
         TagetGroup.Clear();
+
         if (transform.childCount > 0)
         {
             for(int i = 0; i < groupInput.Count; i++)
             {
-                TagetGroup.Add((transform.GetChild(i), groupInput[i]));
+                if (groupInput[i] != null && transform.GetChild(i) != null)
+                {
+                    TagetGroup.Add((transform.GetChild(i), groupInput[i]));
+                }
             }
-            Raid();
         }
+        
     }
     public void Raid()
     {
-        List<GameObject> EnemyList = new List<GameObject>();
-
-        foreach (Transform tran in spawner)
+        int ranSpawner = Random.Range(0, spawner.Length);
+        int ranEn = Random.Range(0, enemies.Length);
+        int ranRate = Random.Range(1, enemies[ranEn].rateSpawn);
+        Debug.Log($"{ranSpawner} : {ranEn} : {ranRate}");
+        for (int i = 0; i < ranRate; i++)
         {
-            int ranEn = Random.Range(0, enemies.Length);
-            int ranRate = Random.Range(1, enemies[ranEn].rateSpawn);
-            for (int i = 0; i < ranRate; i++)
-            {
-                EnemyList.Add(enemies[ranEn].Prefab);
-            }
-            if (EnemyList.Count > 0)
-            {
-                foreach (GameObject enOB in EnemyList)
-                {
-                    GameObject EnemOB = Instantiate(enOB, tran);
-                    var tagetData = EnemOB.GetComponent<TagetData>();
-                    tagetData.TagetGroup = TagetGroup;
-                    StartCoroutine(creatCooldown(1));
-                }
-            }
+            GameObject EnemOB = Instantiate(enemies[ranEn].Prefab, spawner[ranSpawner]);
+            AntAI ai = EnemOB.GetComponent<AntAI>();
+
+            ai.Damage = enemies[ranEn].EnemyDamage;
+            ai.Attackcoldown = enemies[ranEn].AttackColdown;
+            StartCoroutine(creatCooldown(1));
         }
     }
     public void GroupInput(List<List<Transform>> groups)
     {
-        if (groupInput == null)
-        {
-            Debug.Log("null");
-            groupInput = groups;
-            iscreate = true;
-
-        }
-        else
-        {
-            Debug.Log("Unnull");
-            groupInput.Clear();
-            groupInput = groups;
-            iscreate = true;
-        }
-
+        groupInput?.Clear();
+        groupInput = groups;
+        iscreate = true;
     }
     public void TimeWorld(float timer)
     {
@@ -119,15 +119,13 @@ public class SpawnRaid : MonoBehaviour
             }
         }
     }
-    public void ReNavMesh()
-    {
-        surface.RemoveData();
-        surface.BuildNavMesh();
-    }
-
     IEnumerator creatCooldown(float time)
     {
         Debug.Log("Create");
         yield return new WaitForSeconds(time);
+    }
+    public void BakeNavMesh()
+    {
+        surface.BuildNavMesh();
     }
 }

@@ -15,5 +15,6 @@ MonoBehaviour:
   Prefab: {fileID: 7624014046178284455, guid: 5c3f3a9554506f14a957582aa68e69d2, type: 3}
   rateSpawn: 3
   EnemyDamage: 10
+  AttackColdown: 1
   MaxHealth: 100
   ItemDrop: {fileID: 11400000, guid: 2b91cf5499eb3c34398b698e62beb2b5, type: 2}

@@ -24,6 +24,7 @@ namespace StarterAssets
 
         [Header("Player")]
         public float MoveSpeed = 2.0f;
+        [HideInInspector] public Transform PlayerTransform;
 
         public float SprintSpeed = 5.335f;
 
@@ -151,6 +152,7 @@ namespace StarterAssets
         #endregion
         private void Awake()
         {
+            PlayerTransform = transform;
             if (instance == null)
             {
                 instance = this;

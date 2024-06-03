@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: -1874382154039654977}
   - component: {fileID: 6528064337976445848}
   - component: {fileID: 3884675574897355037}
+  - component: {fileID: 268104748700387224}
   m_Layer: 0
   m_Name: SoilBox
   m_TagString: Untagged
@@ -193,6 +194,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 261110ad9b3ae1945a73ada38bfa2df1, type: 2}
+--- !u!114 &268104748700387224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983942894638586541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc223fa1d6bdd664c8e3afee16fee580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHP: 20
 --- !u!1001 &2922098541390226535
 PrefabInstance:
   m_ObjectHideFlags: 0

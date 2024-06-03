@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,16 +6,19 @@ using UnityEngine.AI;
 public class AntAI : MonoBehaviour
 {
     public Transform Taget;
+    public float Damage;
+    public float Attackcoldown;
+    public float SphereRadien;
+    public Vector3 SpherOffset;
 
     public bool velocity;
     public bool desiredVelocity;
     public bool path;
 
-    public List<Transform> Enemylist;
-
     private NavMeshAgent agent;
     private Animator animator;
 
+    bool canAttack = true;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -24,18 +27,87 @@ public class AntAI : MonoBehaviour
 
     void Update()
     {
-        if(Taget != null)
+        if (Input.GetKeyDown(KeyCode.O))
         {
-            agent.destination = Taget.position;
+            agent.isStopped = true;
+        }
+        if (Taget != null &&  agent.isOnNavMesh)
+        {
+            agent.SetDestination(Taget.position);
+
+            if (agent.remainingDistance <= 0.5f && !agent.pathPending)
+            {
+                
+            }
+            Collider[] coll = Physics.OverlapSphere(transform.position + SpherOffset, SphereRadien);
+            if (coll.Length > 0)
+            {
+                foreach (Collider collider in coll)
+                {
+                    if (collider.TryGetComponent<BlockHeath>(out BlockHeath heath1))
+                    {
+                        Debug.Log(collider);
+                        BlockHeath heath2 = Taget.GetComponent<BlockHeath>();
+                        if (heath2 == heath1)
+                        {
+                            //Debug.Log("attackPlant");
+                            Attack(heath2);
+                        }
+                        else if (collider.CompareTag("block"))
+                        {
+                            //Debug.Log("attackBlock");
+                            Attack(heath1);
+                        }
+                    }
+                    if (collider.TryGetComponent<Health>(out Health heath))
+                    {
+                        if (collider.CompareTag("Player"))
+                        {
+                            Attack(heath);
+                        }
+                    }
+                }
+            }
         }
         else
         {
-            agent.destination = transform.position;
+            agent.SetDestination(transform.position);
         }
     }
-
+    public void AddTaget(Transform target)
+    {
+        Taget = target;
+    }
+    private void Attack(BlockHeath health)
+    {
+        if (canAttack)
+        {
+            animator.SetTrigger("Attack");
+            health.TakeDamage(Damage);
+            StartCoroutine(TakeDamage(Attackcoldown));
+        }
+    }
+    private void Attack(Health health)
+    {
+        if (canAttack)
+        {
+            animator.SetTrigger("Attack");
+            health.TakeDamage(Damage);
+            StartCoroutine(TakeDamage(Attackcoldown));
+        }
+    }
+    IEnumerator TakeDamage(float timer)
+    {
+        canAttack = false;
+        agent.isStopped = true;
+        yield return new WaitForSeconds(timer);
+        canAttack = true;
+        agent.isStopped = false;
+    }
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position + SpherOffset, SphereRadien);
         if (velocity)
         {
             Gizmos.color = Color.green;
@@ -59,4 +131,6 @@ public class AntAI : MonoBehaviour
             }
         }
     }
+
+    
 }
