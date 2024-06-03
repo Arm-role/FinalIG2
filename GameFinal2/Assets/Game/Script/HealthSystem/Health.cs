@@ -5,7 +5,9 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private ParticleSystem DestroySystem;
+    private ParticleSystem DieParticle;
+    [SerializeField]
+    private ParticleSystem hitParticle;
 
     public float health;
 
@@ -30,22 +32,27 @@ public class Health : MonoBehaviour
         {
             animator.SetTrigger("GetDamage");
         }
+
         health -= damage;
+
+        if (hitParticle != null)
+        {
+            GameObject hit = Instantiate(hitParticle.gameObject, transform.position, transform.rotation);
+            Destroy(hit, 2f);
+        }
+
         if (health <= 0)
         {
             health = 0;
             onTakeDamage?.Invoke(damage, health);
-            if (DestroySystem != null)
+            if (DieParticle != null)
             {
-                DestroySystem.gameObject.SetActive(true);
-                DestroySystem.transform.SetParent(null, true);
-                DestroySystem.Play();
+                GameObject particle = Instantiate(DieParticle.gameObject, transform.position, transform.rotation);
+                Destroy(particle, 2f);
             }
             onDsetroy?.Invoke();
 
             gameObject.SetActive(false);
-
-            //SpawnRaid.instance.BakeNavMesh();
 
             Destroy(gameObject);
         }

@@ -79,7 +79,8 @@ namespace StarterAssets
 
         [Header("UI")]
         public GameObject CrossHair;
-
+        [SerializeField] private GameObject Gun;
+        [SerializeField] private GameObject Sword;
         #endregion
 
         #region private field
@@ -171,7 +172,10 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
+            Gun.SetActive(false);
+            Sword.SetActive(false);
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -211,16 +215,25 @@ namespace StarterAssets
             {
                 SetWeightLayer(1, 1);
                 SetWeightLayer(2, 0);
+
+                Gun.SetActive(true);
+                Sword.SetActive(false);
             }
             else if (_HotMode == 1)
             {
                 SetWeightLayer(1, 0);
                 SetWeightLayer(2, 1);
+
+                Gun.SetActive(false);
+                Sword.SetActive(true);
             }
             else
             {
                 SetWeightLayer(1, 0);
                 SetWeightLayer(2, 0);
+
+                Gun.SetActive(false);
+                Sword.SetActive(false);
             }
 
             JumpAndGravity();

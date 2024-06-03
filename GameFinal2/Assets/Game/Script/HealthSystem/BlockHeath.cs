@@ -5,7 +5,9 @@ using UnityEngine;
 public class BlockHeath : MonoBehaviour
 {
     [SerializeField]
-    private ParticleSystem DestroySystem;
+    private ParticleSystem DieParticle;
+    [SerializeField]
+    private ParticleSystem hitParticle;
 
     public float Health;
 
@@ -18,21 +20,26 @@ public class BlockHeath : MonoBehaviour
     public void TakeDamage(float damage)
     {
         Health -= damage;
+
+        if (hitParticle != null)
+        {
+            GameObject hit = Instantiate(hitParticle.gameObject, transform.position, transform.rotation);
+            Destroy(hit, 2f);
+        }
+            
         if (Health <= 0)
         {
             Health = 0;
             onTakeDamage?.Invoke(damage, Health);
-            if (DestroySystem != null)
+            if (DieParticle != null)
             {
-                DestroySystem.gameObject.SetActive(true);
-                DestroySystem.transform.SetParent(null, true);
-                DestroySystem.Play();
+                GameObject particle = Instantiate(DieParticle.gameObject, transform.position, transform.rotation);
+                Destroy(particle, 2f);
+                //DestroySystem.Play();
             }
             onDsetroy?.Invoke();
 
             gameObject.SetActive(false);
-
-            //SpawnRaid.instance.BakeNavMesh();
 
             Destroy(gameObject);
         }
