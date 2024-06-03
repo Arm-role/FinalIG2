@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8314480516089529790}
   - component: {fileID: 1735552927844351492}
   - component: {fileID: 6605121642991252573}
-  - component: {fileID: 4726632334502222234}
   m_Layer: 0
   m_Name: RaidManager
   m_TagString: Untagged
@@ -101,16 +100,3 @@ MonoBehaviour:
   threshold: 5
   transforms: []
   FindOB: 0
---- !u!114 &4726632334502222234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8457819466150764719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e492a276b66e8d141b6d95442a0488b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}

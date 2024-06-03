@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 461372587909482449}
   - component: {fileID: 3641999757970369408}
   - component: {fileID: 3887192719834498525}
+  - component: {fileID: 5238069110400856564}
   m_Layer: 0
   m_Name: blackantperfect
   m_TagString: Untagged
@@ -422,6 +423,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.23, y: 3.89, z: 4.44}
   m_Center: {x: 0, y: -0.29, z: 0}
+--- !u!114 &5238069110400856564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802747518480621193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5366f8a2b16e04bb2d3c4843ec9012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DieParticle: {fileID: 141433446842962268, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
+  hitParticle: {fileID: 6823200998282874672, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
+  health: 50
 --- !u!1 &904255235031175978
 GameObject:
   m_ObjectHideFlags: 0

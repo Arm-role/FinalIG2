@@ -2150,6 +2150,7 @@ GameObject:
   - component: {fileID: 6516955555771785635}
   - component: {fileID: 6508730523555966625}
   - component: {fileID: 8447562306823255791}
+  - component: {fileID: 3354161584970970696}
   m_Layer: 0
   m_Name: antperfect
   m_TagString: Untagged
@@ -2272,6 +2273,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.23, y: 3.89, z: 4.44}
   m_Center: {x: 0, y: -0.29, z: 0}
+--- !u!114 &3354161584970970696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624014046178284455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5366f8a2b16e04bb2d3c4843ec9012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DieParticle: {fileID: 141433446842962268, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
+  hitParticle: {fileID: 6823200998282874672, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
+  health: 50
 --- !u!1 &7937420697256263635
 GameObject:
   m_ObjectHideFlags: 0

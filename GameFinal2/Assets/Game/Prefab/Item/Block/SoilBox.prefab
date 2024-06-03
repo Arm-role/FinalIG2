@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc223fa1d6bdd664c8e3afee16fee580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 20
+  DestroySystem: {fileID: 141433446842962268, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
+  Health: 30
 --- !u!1001 &2922098541390226535
 PrefabInstance:
   m_ObjectHideFlags: 0
