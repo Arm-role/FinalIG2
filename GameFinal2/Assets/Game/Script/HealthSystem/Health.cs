@@ -15,8 +15,21 @@ public class Health : MonoBehaviour
     public delegate void TakeDamageEvent(float damage, float Health);
     public TakeDamageEvent onTakeDamage;
 
+    private Animator animator;
+
+    private void Start()
+    {
+        if (TryGetComponent<Animator>(out Animator ani))
+        {
+            animator = ani;
+        }
+    }
     public void TakeDamage(float damage)
     {
+        if(animator != null)
+        {
+            animator.SetTrigger("GetDamage");
+        }
         health -= damage;
         if (health <= 0)
         {
