@@ -7,7 +7,7 @@ public class TimeManager : MonoBehaviour
 {
     [SerializeField] private Light Sun;
 
-    [SerializeField, Range(0, 60)] private float TimeOfDay;
+    [SerializeField, Range(0, 300)] private float TimeOfDay;
 
     [SerializeField] private float SunRotateSpeed;
     [SerializeField] private float RaidCoolDown;
@@ -18,8 +18,8 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Gradient FogColor;
     [SerializeField] private Gradient sunColor;
 
-    private float totaltime = 60;
-    const float MaxTime = 60;
+    private float totaltime = 300;
+    const float MaxTime = 300;
     bool isRaid = true;
 
     int CountSpawn = 0;

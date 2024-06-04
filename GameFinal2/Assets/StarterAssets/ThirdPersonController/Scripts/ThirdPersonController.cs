@@ -114,6 +114,9 @@ namespace StarterAssets
         private int _animIDVerDir;
         private int _animIDHotMode;
         private int _animIDPlayGun;
+        private int _animIDGunMode;
+
+
 
         // SmoothNess
         private float smoothness = 0.3f; // ความนุ่มนวล
@@ -299,6 +302,7 @@ namespace StarterAssets
             _animIDVerDir = Animator.StringToHash("VerDir");
             _animIDHotMode = Animator.StringToHash("CurrentMode");
             _animIDPlayGun = Animator.StringToHash("PlayGun");
+            _animIDGunMode = Animator.StringToHash("HotMode");
         }
         #endregion
 
@@ -368,21 +372,28 @@ namespace StarterAssets
                 case 0:
                     Move_forward();
                     CenterCamera();
+                    _animator.SetFloat(_animIDGunMode, 0);
+
                     break;
 
                 case 1:
                     Move_Locomotion();
                     CenterCamera();
+                    _animator.SetFloat(_animIDGunMode, 0);
+
                     break;
 
                 case 2:
                     Move_Locomotion();
                     LocoCamera();
+                    _animator.SetFloat(_animIDGunMode, 0);
                     break;
 
                 case 3:
                     Move_Locomotion();
                     LocoCamera();
+                    _animator.SetFloat(_animIDGunMode, 1);
+
                     break;
             }
         }

@@ -57,8 +57,6 @@ public class UIActive : MonoBehaviour
             isOpenInven = false;
             isOpenMaket = false;
             InventoryActive();
-            PausePanel.gameObject.SetActive(true);
-            Time.timeScale = 0;
         }
     }
     private void LateUpdate()
