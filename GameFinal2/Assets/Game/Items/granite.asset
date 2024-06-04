@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: Granite
   value: 1
   price: 45
-  sprite: {fileID: 21300000, guid: 880ee148115c4db4496ae5bb39f27279, type: 3}
+  sprite: {fileID: 21300000, guid: df68edc0fccd68643a6a43cb7bee7e01, type: 3}
   IsStackable: 1
   ObjectOnWorld: {fileID: 7983942894638586541, guid: e1ff22e71cc6ac749ba5a37d21b56993, type: 3}
   Desciption: "\u0E34\u0E35for building"

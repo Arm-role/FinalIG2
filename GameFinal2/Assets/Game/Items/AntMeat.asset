@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: 
   value: 0
   price: 10
-  sprite: {fileID: 21300000, guid: f042cd342e638084cbfbc2760bd3b0de, type: 3}
+  sprite: {fileID: 21300000, guid: b18bb3324600db5488097f8950c551be, type: 3}
   IsStackable: 1
   ObjectOnWorld: {fileID: 0}
   Desciption: AntMeat For Eat +10HP
