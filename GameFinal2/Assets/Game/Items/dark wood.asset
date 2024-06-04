@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: Dark wood
   value: 1
   price: 50
-  sprite: {fileID: 21300000, guid: 7dca0f6c7c5951c418619dd6faf52bee, type: 3}
+  sprite: {fileID: 21300000, guid: d6698039568918047af2fb59783b82ff, type: 3}
   IsStackable: 1
   ObjectOnWorld: {fileID: 7983942894638586541, guid: 98bce4c68e07091449893df666ca867c, type: 3}
   Desciption: "\u0E34\u0E35for building"

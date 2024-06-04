@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: Gun
   value: 1
   price: 250
-  sprite: {fileID: 21300000, guid: ae2677699e649c8418d9b963525d6069, type: 3}
+  sprite: {fileID: 21300000, guid: d91394866b7bc4f4b817863c702034ad, type: 3}
   IsStackable: 0
   ObjectOnWorld: {fileID: 0}
   Desciption: for shoot

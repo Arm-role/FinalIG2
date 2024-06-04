@@ -17,7 +17,7 @@ MonoBehaviour:
   itemName: brown wood
   value: 1
   price: 50
-  sprite: {fileID: 21300000, guid: fc251d26091c3104191c64d273d590e2, type: 3}
+  sprite: {fileID: 21300000, guid: cfd533cc80d58bb429cbb15ed029a8f1, type: 3}
   IsStackable: 1
   ObjectOnWorld: {fileID: 7983942894638586541, guid: 971e8b402798ce64a9744d71938abffb, type: 3}
   Desciption: "\u0E34\u0E35for building"
