@@ -30,10 +30,9 @@ public class Health : MonoBehaviour
 
         health -= damage;
 
-        if (ParticleManager.instance.Hit != null)
+        if (ParticleManager.instance.HitMelee)
         {
-            GameObject hit = Instantiate(ParticleManager.instance.Hit.gameObject, transform.position, transform.rotation);
-            hit.transform.localScale = transform.localScale / 2;
+            GameObject hit = Instantiate(ParticleManager.instance.HitMelee.gameObject, transform.position, transform.rotation);
             Destroy(hit, 2f);
         }
 

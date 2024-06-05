@@ -28,30 +28,42 @@ public class GrowSystem : MonoBehaviour
 
                 switch (timer)
                 {
-                    case < 10:
+                    case < 100:
                         if (isCreate)
                         {
                             //Debug.Log("State1");
                             CreateOB(ObID.transform.GetChild(0).gameObject);
                             isCreate = false;
+
+                            if (ParticleManager.instance.PlantGrow != null)
+                            {
+                                GameObject hit = Instantiate(ParticleManager.instance.PlantGrow.gameObject, transform.position, transform.rotation);
+                                Destroy(hit, 2f);
+                            }
                         }
                         break;
-                    case < 11:
+                    case < 101:
                         isCreate = true;
                         break;
-                    case < 20:
+                    case < 200:
                         if (isCreate)
                         {
                             //Debug.Log("State2");
                             Destroy(plantOB);
                             CreateOB(ObID.transform.GetChild(1).gameObject);
                             isCreate = false;
+
+                            if (ParticleManager.instance.PlantGrow != null)
+                            {
+                                GameObject hit = Instantiate(ParticleManager.instance.PlantGrow.gameObject, transform.position, transform.rotation);
+                                Destroy(hit, 2f);
+                            }
                         }
                         break;
-                    case < 21:
+                    case < 201:
                         isCreate = true;
                         break;
-                    case > 22:
+                    case > 202:
                         isCreate = true;
                         if (isCreate)
                         {
@@ -60,6 +72,12 @@ public class GrowSystem : MonoBehaviour
                             CreateOB(ObID.transform.GetChild(2).gameObject);
                             isCreate = false;
                             isGrow = false;
+
+                            if (ParticleManager.instance.PlantGrow != null)
+                            {
+                                GameObject hit = Instantiate(ParticleManager.instance.PlantGrow.gameObject, transform.position, transform.rotation);
+                                Destroy(hit, 2f);
+                            }
                         }
                         break;
                 }

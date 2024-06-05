@@ -10,6 +10,7 @@ public class ParticleManager : MonoBehaviour
 
     [Header("Action")]
     public ParticleSystem Hit;
+    public ParticleSystem HitMelee;
     public ParticleSystem HitBlock;
     public ParticleSystem BockDestroy;
     public ParticleSystem Death;

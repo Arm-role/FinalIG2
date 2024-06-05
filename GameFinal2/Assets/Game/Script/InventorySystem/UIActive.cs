@@ -70,6 +70,8 @@ public class UIActive : MonoBehaviour
             PausePanel.gameObject.SetActive(false);
             Inventory.gameObject.SetActive(false);
             Maketplace.gameObject.SetActive(false);
+            Scene.gameObject.SetActive(false);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     private void LateUpdate()

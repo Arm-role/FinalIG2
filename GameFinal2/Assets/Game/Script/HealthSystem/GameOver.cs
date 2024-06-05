@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameOver : MonoBehaviour
             virtualCamera.Follow = surrugate.transform;
 
             UIActive.instance.GameOver.gameObject.SetActive(true);
+            SceneManager.LoadScene(2);
             Debug.Log("GameOver");
         }
     }
