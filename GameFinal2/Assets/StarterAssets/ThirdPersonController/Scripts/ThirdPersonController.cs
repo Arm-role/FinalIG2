@@ -1,13 +1,9 @@
 ﻿using Cinemachine;
-using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-using static UnityEditor.Experimental.GraphView.GraphView;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
