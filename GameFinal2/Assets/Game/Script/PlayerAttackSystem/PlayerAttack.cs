@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public static PlayerAttack Instance;
     public float PlayerDamage;
+   
     private void Awake()
     {
         if (Instance == null)

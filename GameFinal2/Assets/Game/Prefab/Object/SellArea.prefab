@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8021343338049703160}
   - component: {fileID: 2626253042154464731}
   - component: {fileID: 5809451423631611501}
-  - component: {fileID: 805714950519233785}
-  m_Layer: 0
+  - component: {fileID: 1612700435113980645}
+  - component: {fileID: 1525750067162247506}
+  m_Layer: 12
   m_Name: SellArea
   m_TagString: SellArea
   m_Icon: {fileID: 0}
@@ -84,7 +85,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &805714950519233785
+--- !u!114 &1612700435113980645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7341854509540362335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4995cdd5d956494aab959c91d47496d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 1.67, z: 0}
+  showAdvice: 0
+  showAdviceMask:
+    serializedVersion: 2
+    m_Bits: 4
+  scaleBox: {x: 4, y: 4, z: 4}
+  radius: 5
+  isBox: 1
+--- !u!65 &1525750067162247506
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,5 +124,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.09026479, y: 0.090264805, z: 0.054545946}
-  m_Center: {x: 0, y: 0, z: 0.025}
+  m_Size: {x: 0.09026478, y: 0.090264805, z: 0.0065392815}
+  m_Center: {x: 0, y: 0, z: 0}

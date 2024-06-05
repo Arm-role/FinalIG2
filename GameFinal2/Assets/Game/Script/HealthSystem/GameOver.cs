@@ -1,11 +1,8 @@
 using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    public GameObject player;
     private CinemachineVirtualCamera virtualCamera;
 
     private void Start()
@@ -19,6 +16,8 @@ public class GameOver : MonoBehaviour
             GameObject surrugate = new GameObject();
             surrugate.transform.position = transform.position;
             virtualCamera.Follow = surrugate.transform;
+
+            UIActive.instance.GameOver.gameObject.SetActive(true);
             Debug.Log("GameOver");
         }
     }

@@ -186,7 +186,6 @@ public class HotbarScroll : MonoBehaviour
                     if (CanAttack)
                     {
                         ThirdPersonController.instance.PlayGun();
-                        UsePlant.Instance.MeleeAttack();
                         StartCoroutine(AttackColdown(MeleeColdow));
                     }
                 }

@@ -18,6 +18,7 @@ public class BlockHeath : MonoBehaviour
         if (ParticleManager.instance.HitBlock != null)
         {
             GameObject hit = Instantiate(ParticleManager.instance.HitBlock.gameObject, transform.position, transform.rotation);
+            hit.transform.localScale = transform.localScale / 2;
             Destroy(hit, 2f);
         }
             

@@ -11,6 +11,8 @@ public class UIActive : MonoBehaviour
     [SerializeField] private Transform Mymoney;
     [SerializeField] private Transform PausePanel;
 
+    public Transform GameOver;
+
     [HideInInspector] public bool isOpenMaket = false;
     [HideInInspector] public bool isOpenInven = false;
     [HideInInspector] public bool isOpenPause = false;
@@ -33,6 +35,7 @@ public class UIActive : MonoBehaviour
         Scene.gameObject.SetActive(true);
         Mymoney.gameObject.SetActive(true);
         PausePanel.gameObject.SetActive(false);
+        GameOver.gameObject.SetActive(false);
     }
 
     void Update()
@@ -57,6 +60,16 @@ public class UIActive : MonoBehaviour
             isOpenInven = false;
             isOpenMaket = false;
             InventoryActive();
+        }
+        if (GameOver.gameObject.activeSelf)
+        {
+            isOpenMaket = false;
+            isOpenPause = false;
+            isOpenInven = false;
+
+            PausePanel.gameObject.SetActive(false);
+            Inventory.gameObject.SetActive(false);
+            Maketplace.gameObject.SetActive(false);
         }
     }
     private void LateUpdate()

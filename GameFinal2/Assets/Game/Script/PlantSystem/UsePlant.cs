@@ -98,8 +98,9 @@ public class UsePlant : MonoBehaviour
             Vector3 origin = transform.position;
             Vector3 direction = transform.forward;
 
-            RaycastHit hit;
-            if (Physics.Raycast(origin, direction, out hit, GunLength))
+            RaycastHit[] hits = Physics.RaycastAll(origin, direction, GunLength);
+            Allhit = hits;
+            foreach (RaycastHit hit in hits)
             {
                 if (!hit.collider.isTrigger)
                 {
@@ -114,6 +115,7 @@ public class UsePlant : MonoBehaviour
                         {
                             Debug.Log("TakeDamage");
                             PlayerAttack.Instance.Attack(health);
+                            break;
                         }
                         Quaternion HitRotate = transform.rotation * Quaternion.Euler(0, 180, 0);
 
@@ -135,46 +137,6 @@ public class UsePlant : MonoBehaviour
             }
         }
     }
-    public void MeleeAttack()
-    {
-        if (ParticleManager.instance != null)
-        {
-            Vector3 origin = transform.position;
-            Vector3 direction = transform.forward;
-
-            RaycastHit hit;
-            if (Physics.Raycast(origin, direction, out hit, GunLength))
-            {
-                if (!hit.collider.isTrigger)
-                {
-                    if (hit.collider.CompareTag("Enemy"))
-                    {
-                        if (hit.collider.transform.TryGetComponent<Health>(out Health health))
-                        {
-                            Debug.Log("TakeDamage");
-                            PlayerAttack.Instance.Attack(health);
-                        }
-                        Quaternion HitRotate = transform.rotation * Quaternion.Euler(0, 180, 0);
-
-                        GameObject hitOB = Instantiate(ParticleManager.instance.Hit.gameObject,
-                        hit.point, HitRotate);
-
-                        Destroy(hitOB, 2f);
-                    }
-                    else
-                    {
-                        Quaternion FlashRotate = transform.rotation * Quaternion.Euler(0, 90, 0);
-
-                        GameObject hitOB = Instantiate(ParticleManager.instance.Flash.gameObject,
-                        hit.point, FlashRotate);
-
-                        Destroy(hitOB, 2f);
-                    }
-                }
-            }
-        }
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;

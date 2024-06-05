@@ -33,6 +33,7 @@ public class Health : MonoBehaviour
         if (ParticleManager.instance.Hit != null)
         {
             GameObject hit = Instantiate(ParticleManager.instance.Hit.gameObject, transform.position, transform.rotation);
+            hit.transform.localScale = transform.localScale / 2;
             Destroy(hit, 2f);
         }
 

@@ -1,7 +1,5 @@
 ﻿using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class BuildingManager : MonoBehaviour
 {
@@ -176,14 +174,6 @@ public class BuildingManager : MonoBehaviour
         {
             pos = hit.point;
         }
-
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //if (Physics.Raycast(ray, out hit, 50, layerMask))
-        //{
-        //    pos = hit.point;
-        //}
-        
-
     }
 
     public void PlaceObject()
