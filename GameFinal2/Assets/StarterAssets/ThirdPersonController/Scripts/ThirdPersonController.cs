@@ -2,7 +2,9 @@
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
+using UnityEngine.Animations.Rigging;
+
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -81,6 +83,7 @@ namespace StarterAssets
         public GameObject CrossHair;
         [SerializeField] private GameObject Gun;
         [SerializeField] private GameObject Sword;
+        [SerializeField] private RigBuilder rig;
         #endregion
 
         #region private field
@@ -218,6 +221,7 @@ namespace StarterAssets
             {
                 SetWeightLayer(1, 1);
                 SetWeightLayer(2, 0);
+                rig.enabled = true;
 
                 Gun.SetActive(true);
                 Sword.SetActive(false);
@@ -226,6 +230,7 @@ namespace StarterAssets
             {
                 SetWeightLayer(1, 0);
                 SetWeightLayer(2, 1);
+                rig.enabled = false;
 
                 Gun.SetActive(false);
                 Sword.SetActive(true);
@@ -234,6 +239,7 @@ namespace StarterAssets
             {
                 SetWeightLayer(1, 0);
                 SetWeightLayer(2, 0);
+                rig.enabled = false;
 
                 Gun.SetActive(false);
                 Sword.SetActive(false);

@@ -11,6 +11,8 @@ TagManager:
   - AdviceArea
   - Raid
   - Plant
+  - FxTemporaire
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -23,8 +25,8 @@ TagManager:
   - Block
   - Soil
   - Destruction
-  - 
-  - 
+  - Enemy
+  - Economy
   - 
   - 
   - 

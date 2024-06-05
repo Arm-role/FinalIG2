@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8377970481792194575}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B03.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4019328553819243953}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RL02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7042545761147009859}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLB03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1171544161478346614}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLM00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6949490576320762253}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RL04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6264961097193731374}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7040182051924268799}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RL00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8964261689470424055}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B01.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 520474729131101245}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WL02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,9 +301,9 @@ GameObject:
   - component: {fileID: 3641999757970369408}
   - component: {fileID: 3887192719834498525}
   - component: {fileID: 5238069110400856564}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: blackantperfect
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,8 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5366f8a2b16e04bb2d3c4843ec9012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DieParticle: {fileID: 141433446842962268, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
-  hitParticle: {fileID: 6823200998282874672, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
   health: 50
 --- !u!1 &904255235031175978
 GameObject:
@@ -447,7 +445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4614031886092787350}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JL02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4390260002000308091}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LW01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5658714060662899310}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2896709238111015366}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2725327733453461584}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLM04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,7 +604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4865206873005446955}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LL03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8128169688064112084}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLB01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8723695756355498102}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +700,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2039141531195082450}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B03.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,7 +732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1663973223276347090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JL 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4377445806496768853}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7128771964143508909}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LL00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,7 +826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3819646132335347263}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B01.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5225456452285825188}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LL04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,7 +889,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2980306059513136133}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: jl02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2713728411162082787}
   - component: {fileID: 2205379704119576414}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ant rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1077,7 +1075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5840867843549450707}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JL01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8614943588655928116}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LW04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1139,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2381855724542025716}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1173,7 +1171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7088633298443238960}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLM02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1205,7 +1203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5963369647499158109}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,7 +1235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1082718503020006330}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2304498877018065563}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLB02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8250583999757987041}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1335,7 +1333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8429104971757382318}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1367,7 +1365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4039181668577758902}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLM05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,7 +1397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6932824445682268388}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1431,7 +1429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8446308387935883816}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLB04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1463,7 +1461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2736247831524066589}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1499,7 +1497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491527288218631939}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LL01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1531,7 +1529,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6155630953760400303}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,7 +1561,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8610632292203432314}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WL00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,7 +1592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7131317061302584768}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1626,7 +1624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3286861610765503999}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1657,7 +1655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1526171051533264259}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1689,7 +1687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7303596595659619303}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LW00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1720,7 +1718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 324201370646425300}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1752,7 +1750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3668344898928653139}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1784,7 +1782,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3057666415973030430}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1815,7 +1813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1525091206801693795}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WL01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1847,7 +1845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6559906549215088848}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B03.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1879,7 +1877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 254927201025098438}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B01.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1911,7 +1909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6336542908375975314}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B01.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1943,7 +1941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2042871112958370064}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B03.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1975,7 +1973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7745724049600455827}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B03.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2006,7 +2004,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3032167261300609027}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLM01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2038,7 +2036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7477266570361259218}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLM01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2070,7 +2068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6650063153105804970}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2103,7 +2101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8685229118793240555}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LL02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2135,7 +2133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2780849780208447065}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: B04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2169,7 +2167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2193256734323468870}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2204,7 +2202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8952801387676035542}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RL01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2236,7 +2234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2023146852397310877}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLM03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2268,7 +2266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1833849782545830016}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LW02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2300,7 +2298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4278889495250681854}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RLB00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2331,7 +2329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2507049062536606820}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2363,7 +2361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1136753818308924054}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2395,7 +2393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4721281518804880262}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LLB05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2427,7 +2425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 243247587017708540}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RL03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2459,7 +2457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1459407240712705662}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WL03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2491,7 +2489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1688477912388578756}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LW05
   m_TagString: Untagged
   m_Icon: {fileID: 0}

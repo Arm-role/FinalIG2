@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class BlockHeath : MonoBehaviour
 {
-    [SerializeField]
-    private ParticleSystem DieParticle;
-    [SerializeField]
-    private ParticleSystem hitParticle;
-
     public float Health;
 
     public delegate void DestroyEnven();
@@ -16,14 +11,13 @@ public class BlockHeath : MonoBehaviour
 
     public delegate void TakeDamageEvent(float damage, float Health);
     public TakeDamageEvent onTakeDamage;
-
     public void TakeDamage(float damage)
     {
         Health -= damage;
 
-        if (hitParticle != null)
+        if (ParticleManager.instance.HitBlock != null)
         {
-            GameObject hit = Instantiate(hitParticle.gameObject, transform.position, transform.rotation);
+            GameObject hit = Instantiate(ParticleManager.instance.HitBlock.gameObject, transform.position, transform.rotation);
             Destroy(hit, 2f);
         }
             
@@ -31,11 +25,10 @@ public class BlockHeath : MonoBehaviour
         {
             Health = 0;
             onTakeDamage?.Invoke(damage, Health);
-            if (DieParticle != null)
+            if (ParticleManager.instance.BockDestroy != null)
             {
-                GameObject particle = Instantiate(DieParticle.gameObject, transform.position, transform.rotation);
+                GameObject particle = Instantiate(ParticleManager.instance.BockDestroy.gameObject, transform.position, transform.rotation);
                 Destroy(particle, 2f);
-                //DestroySystem.Play();
             }
             onDsetroy?.Invoke();
 

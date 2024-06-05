@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField]
-    private ParticleSystem DieParticle;
-    [SerializeField]
-    private ParticleSystem hitParticle;
-
     public float health;
 
     public delegate void DestroyEnven();
@@ -35,9 +30,9 @@ public class Health : MonoBehaviour
 
         health -= damage;
 
-        if (hitParticle != null)
+        if (ParticleManager.instance.Hit != null)
         {
-            GameObject hit = Instantiate(hitParticle.gameObject, transform.position, transform.rotation);
+            GameObject hit = Instantiate(ParticleManager.instance.Hit.gameObject, transform.position, transform.rotation);
             Destroy(hit, 2f);
         }
 
@@ -45,9 +40,9 @@ public class Health : MonoBehaviour
         {
             health = 0;
             onTakeDamage?.Invoke(damage, health);
-            if (DieParticle != null)
+            if (ParticleManager.instance.Death != null)
             {
-                GameObject particle = Instantiate(DieParticle.gameObject, transform.position, transform.rotation);
+                GameObject particle = Instantiate(ParticleManager.instance.Death.gameObject, transform.position, transform.rotation);
                 Destroy(particle, 2f);
             }
             onDsetroy?.Invoke();

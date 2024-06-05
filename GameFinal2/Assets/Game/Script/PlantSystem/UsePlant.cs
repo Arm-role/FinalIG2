@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UsePlant : MonoBehaviour
 {
@@ -10,6 +13,9 @@ public class UsePlant : MonoBehaviour
     public float rayLength = 10f;
     public bool isPress = false;
     public bool isPress2 = false;
+
+    public Transform HitOrigin;
+    public float GunLength = 50f;
 
     public RaycastHit[] Allhit;
 
@@ -84,5 +90,94 @@ public class UsePlant : MonoBehaviour
                 }
             }
         }
+    }
+    public void ShootGun()
+    {
+        if (ParticleManager.instance != null)
+        {
+            Vector3 origin = transform.position;
+            Vector3 direction = transform.forward;
+
+            RaycastHit hit;
+            if (Physics.Raycast(origin, direction, out hit, GunLength))
+            {
+                if (!hit.collider.isTrigger)
+                {
+                    GameObject particle = Instantiate(ParticleManager.instance.MuzzleFlash.gameObject,
+                    HitOrigin.position, HitOrigin.rotation);
+
+                    Destroy(particle, 2f);
+
+                    if (hit.collider.CompareTag("Enemy"))
+                    {
+                        if (hit.collider.transform.TryGetComponent<Health>(out Health health))
+                        {
+                            Debug.Log("TakeDamage");
+                            PlayerAttack.Instance.Attack(health);
+                        }
+                        Quaternion HitRotate = transform.rotation * Quaternion.Euler(0, 180, 0);
+
+                        GameObject hitOB = Instantiate(ParticleManager.instance.Hit.gameObject,
+                        hit.point, HitRotate);
+
+                        Destroy(hitOB, 2f);
+                    }
+                    else
+                    {
+                        Quaternion FlashRotate = transform.rotation * Quaternion.Euler(0, 90, 0);
+
+                        GameObject hitOB = Instantiate(ParticleManager.instance.Flash.gameObject,
+                        hit.point, FlashRotate);
+
+                        Destroy(hitOB, 2f);
+                    }
+                }
+            }
+        }
+    }
+    public void MeleeAttack()
+    {
+        if (ParticleManager.instance != null)
+        {
+            Vector3 origin = transform.position;
+            Vector3 direction = transform.forward;
+
+            RaycastHit hit;
+            if (Physics.Raycast(origin, direction, out hit, GunLength))
+            {
+                if (!hit.collider.isTrigger)
+                {
+                    if (hit.collider.CompareTag("Enemy"))
+                    {
+                        if (hit.collider.transform.TryGetComponent<Health>(out Health health))
+                        {
+                            Debug.Log("TakeDamage");
+                            PlayerAttack.Instance.Attack(health);
+                        }
+                        Quaternion HitRotate = transform.rotation * Quaternion.Euler(0, 180, 0);
+
+                        GameObject hitOB = Instantiate(ParticleManager.instance.Hit.gameObject,
+                        hit.point, HitRotate);
+
+                        Destroy(hitOB, 2f);
+                    }
+                    else
+                    {
+                        Quaternion FlashRotate = transform.rotation * Quaternion.Euler(0, 90, 0);
+
+                        GameObject hitOB = Instantiate(ParticleManager.instance.Flash.gameObject,
+                        hit.point, FlashRotate);
+
+                        Destroy(hitOB, 2f);
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, transform.forward * rayLength);
     }
 }

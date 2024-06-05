@@ -243,7 +243,7 @@ BlendTree:
   m_Name: Locomotion
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 288e73c28c8ca8c41952db5435bff297, type: 2}
+    m_Motion: {fileID: 7400000, guid: 0e0dcf6efa63ccb40be5491ec5bd8571, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -989,7 +989,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6938384614996597984}
-    m_Position: {x: 50, y: 580, z: 0}
+    m_Position: {x: 60, y: 570, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1142,7 +1142,7 @@ BlendTree:
   m_Name: forward
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 288e73c28c8ca8c41952db5435bff297, type: 2}
+    m_Motion: {fileID: 7400000, guid: 0e0dcf6efa63ccb40be5491ec5bd8571, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1

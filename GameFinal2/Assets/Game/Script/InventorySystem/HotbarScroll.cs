@@ -24,8 +24,13 @@ public class HotbarScroll : MonoBehaviour
     private bool _CheckSelect = true;
     private bool isPress1 = true;
     private bool isPress2 = true;
-    private bool isPress3 = false; 
+    private bool isPress3 = false;
 
+    [Header("Attack")]
+    public float AttackColdow;
+    public float MeleeColdow;
+
+    bool CanAttack = true;
     private void Awake()
     {
         if (instance == null)
@@ -176,17 +181,14 @@ public class HotbarScroll : MonoBehaviour
             case ItemType.Weapon:
                 CurrentTag = 1;
 
-                if (_input.Action)
+                if (_input.ActionL)
                 {
-                    if (isPress1)
+                    if (CanAttack)
                     {
                         ThirdPersonController.instance.PlayGun();
-                        isPress1 = false;
+                        UsePlant.Instance.MeleeAttack();
+                        StartCoroutine(AttackColdown(MeleeColdow));
                     }
-                }
-                else
-                {
-                    isPress1 = true;
                 }
                 break;
 
@@ -227,17 +229,20 @@ public class HotbarScroll : MonoBehaviour
 
                 if (_input.ActionL)
                 {
-                    if (isPress2)
+                    if (CanAttack)
                     {
                         ThirdPersonController.instance.PlayGun();
-                        isPress1 = false;
+                        UsePlant.Instance.ShootGun();
+                        StartCoroutine(AttackColdown(AttackColdow));
                     }
-                }
-                else
-                {
-                    isPress2 = true;
                 }
                 break;
         }
+    }
+    IEnumerator AttackColdown(float Time)
+    {
+        CanAttack = false;
+        yield return new WaitForSeconds(Time);
+        CanAttack = true;
     }
 }

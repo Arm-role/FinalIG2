@@ -35,10 +35,6 @@ public class AntAI : MonoBehaviour
         {
             agent.SetDestination(Taget.position);
 
-            if (agent.remainingDistance <= 0.5f && !agent.pathPending)
-            {
-                
-            }
             Collider[] coll = Physics.OverlapSphere(transform.position + SpherOffset, SphereRadien);
             if (coll.Length > 0)
             {
