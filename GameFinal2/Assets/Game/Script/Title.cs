@@ -9,7 +9,7 @@ public class Title : MonoBehaviour
 
     public void Startgame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
 

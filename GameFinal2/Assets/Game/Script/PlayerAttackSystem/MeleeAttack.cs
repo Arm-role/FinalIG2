@@ -1,57 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
+    public static MeleeAttack instance;
     public Vector3 Offset;
+    public Transform Target;
     public float Radien;
-    void Start()
-    {
-        
-    }
 
+    
+    bool isAttack = false;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Update()
     {
-        Vector3 origin = transform.position - Offset;
-        Collider[] colliders = Physics.OverlapSphere(origin, Radien);
-        foreach (Collider collider in colliders)
+        if (isAttack)
         {
-            if (!collider.isTrigger)
+            Vector3 origin = Target.position - Offset;
+            Collider[] colliders = Physics.OverlapSphere(origin, Radien);
+            foreach (Collider collider in colliders)
             {
-                if (collider.CompareTag("Enemy"))
+                if (!collider.isTrigger)
                 {
-                    if (collider.transform.TryGetComponent<Health>(out Health health))
+                    if (collider.CompareTag("Enemy"))
                     {
-                        Debug.Log("TakeDamage");
-                        PlayerAttack.Instance.Attack(health);
-                        break;
+                        if (collider.transform.TryGetComponent<Health>(out Health health))
+                        {
+                            if (ParticleManager.instance.HitMelee != null)
+                            {
+                                GameObject hit = Instantiate(ParticleManager.instance.HitMelee.gameObject, Target.position - Offset, transform.rotation);
+                                Destroy(hit, 2f);
+                            }
+
+                            PlayerAttack.Instance.Attack(health);
+                            isAttack = false ;
+                            break;
+                        }
                     }
-                    //Quaternion HitRotate = transform.rotation * Quaternion.Euler(0, 180, 0);
-
-                    //GameObject hitOB = Instantiate(ParticleManager.instance.Hit.gameObject,
-                    //hit.point, HitRotate);
-
-                    //Destroy(hitOB, 2f);
-                }
-                else
-                {
-                    //Quaternion FlashRotate = transform.rotation * Quaternion.Euler(0, 90, 0);
-
-                    //GameObject hitOB = Instantiate(ParticleManager.instance.Flash.gameObject,
-                    //hit.point, FlashRotate);
-
-                    //Destroy(hitOB, 2f);
                 }
             }
         }
-
     }
-
+    public void Attacking()
+    {
+        isAttack = true;
+    }
+    public void EndAttack()
+    {
+        isAttack = false;
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position - Offset, Radien);
+        Gizmos.DrawWireSphere(Target.position - Offset, Radien);
     }
 }

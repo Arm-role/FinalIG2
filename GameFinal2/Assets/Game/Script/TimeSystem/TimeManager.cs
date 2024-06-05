@@ -23,6 +23,7 @@ public class TimeManager : MonoBehaviour
     bool isRaid = true;
 
     int CountSpawn = 0;
+    int day;
     private void Update()
     {
         TimeOfDay += Time.deltaTime * SunRotateSpeed;
@@ -33,6 +34,8 @@ public class TimeManager : MonoBehaviour
         if (TimeOfDay > MaxTime)
         {
             TimeOfDay = 0;
+            day++;
+            CountSpawn = day;
             totaltime = MaxTime;
             //CountSpawn;
         }
@@ -49,13 +52,13 @@ public class TimeManager : MonoBehaviour
                 StartCoroutine(waithForRaid());
             }
         }
-        
     }
     private void OnValidate()
     {
         UpdateSunRotation();
         UpdateLighting();
     }
+
     private void UpdateSunRotation()
     {
         float sunRotation = Mathf.Lerp(-90, 270, TimeOfDay / MaxTime);

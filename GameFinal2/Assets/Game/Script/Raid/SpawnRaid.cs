@@ -80,7 +80,6 @@ public class SpawnRaid : MonoBehaviour
         int ranSpawner = Random.Range(0, spawner.Length);
         int ranEn = Random.Range(0, enemies.Length);
         int ranRate = Random.Range(1, enemies[ranEn].rateSpawn);
-        Debug.Log($"{ranSpawner} : {ranEn} : {ranRate}");
         for (int i = 0; i < ranRate; i++)
         {
             GameObject EnemOB = Instantiate(enemies[ranEn].Prefab, spawner[ranSpawner]);

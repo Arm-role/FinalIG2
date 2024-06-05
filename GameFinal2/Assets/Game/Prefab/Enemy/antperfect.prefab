@@ -2233,8 +2233,8 @@ MonoBehaviour:
   Taget: {fileID: 0}
   Damage: 0
   Attackcoldown: 0
-  SphereRadien: 0.58
-  SpherOffset: {x: 0, y: 0, z: 0.48}
+  SphereRadien: 0.8
+  SpherOffset: {x: 0, y: 0, z: 0}
   velocity: 0
   desiredVelocity: 0
   path: 1
